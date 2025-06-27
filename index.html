@@ -20,11 +20,11 @@
             --bg-primary: #0a0a0a;
             --bg-secondary: #1a1a1a;
             --text-primary: #ffffff;
-            --text-secondary: rgba(255, 255, 255, 0.8);
-            --text-tertiary: rgba(255, 255, 255, 0.6);
+            --text-secondary: rgba(255, 255, 255, 0.85);
+            --text-tertiary: rgba(255, 255, 255, 0.65);
             --text-muted: rgba(255, 255, 255, 0.4);
-            --glass-bg: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
             --shadow-primary: 0 8px 32px rgba(0, 0, 0, 0.4);
             --shadow-hover: 0 32px 80px rgba(0, 0, 0, 0.6);
             --border-radius: 20px;
@@ -38,9 +38,9 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
             background: var(--bg-primary);
             background-image: 
-                radial-gradient(circle at 25% 25%, rgba(0, 122, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 75% 75%, rgba(88, 86, 214, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 50% 100%, rgba(48, 209, 88, 0.06) 0%, transparent 50%);
+                radial-gradient(circle at 25% 25%, rgba(0, 122, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(circle at 75% 75%, rgba(88, 86, 214, 0.06) 0%, transparent 60%),
+                radial-gradient(circle at 50% 100%, rgba(48, 209, 88, 0.04) 0%, transparent 60%);
             min-height: 100vh;
             overflow-x: hidden;
             color: var(--text-primary);
@@ -56,7 +56,7 @@
             border-radius: var(--border-radius);
             box-shadow: 
                 var(--shadow-primary),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
         }
 
         .fade-in {
@@ -70,39 +70,66 @@
             transform: translateY(0);
         }
 
+        /* === BRAND MARK === */
+        .brand-mark {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 40px;
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .brand-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
+            border-radius: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 40px rgba(0, 122, 255, 0.25);
+        }
+
+        .brand-icon svg {
+            width: 64px;
+            height: 64px;
+            fill: white;
+        }
+
         /* === FLOATING BACKGROUND === */
         .floating-orb {
             position: absolute;
             border-radius: 50%;
-            filter: blur(2px);
-            animation: drift 12s ease-in-out infinite;
+            filter: blur(3px);
+            animation: drift 15s ease-in-out infinite;
             pointer-events: none;
         }
 
         .orb-1 { 
-            width: 250px; height: 250px; 
-            top: 10%; left: 5%; 
-            background: radial-gradient(circle, rgba(0, 122, 255, 0.08) 0%, transparent 70%);
+            width: 280px; height: 280px; 
+            top: 8%; left: 3%; 
+            background: radial-gradient(circle, rgba(0, 122, 255, 0.06) 0%, transparent 70%);
             animation-delay: 0s; 
         }
         .orb-2 { 
-            width: 180px; height: 180px; 
-            top: 60%; right: 8%; 
-            background: radial-gradient(circle, rgba(88, 86, 214, 0.06) 0%, transparent 70%);
-            animation-delay: 4s; 
+            width: 200px; height: 200px; 
+            top: 55%; right: 5%; 
+            background: radial-gradient(circle, rgba(88, 86, 214, 0.05) 0%, transparent 70%);
+            animation-delay: 5s; 
         }
         .orb-3 { 
-            width: 120px; height: 120px; 
-            bottom: 20%; left: 12%; 
-            background: radial-gradient(circle, rgba(48, 209, 88, 0.05) 0%, transparent 70%);
-            animation-delay: 8s; 
+            width: 140px; height: 140px; 
+            bottom: 15%; left: 8%; 
+            background: radial-gradient(circle, rgba(48, 209, 88, 0.04) 0%, transparent 70%);
+            animation-delay: 10s; 
         }
 
         @keyframes drift {
-            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.4; }
-            25% { transform: translateY(-40px) translateX(25px) scale(1.1); opacity: 0.2; }
-            50% { transform: translateY(-15px) translateX(-20px) scale(0.9); opacity: 0.5; }
-            75% { transform: translateY(20px) translateX(15px) scale(1.05); opacity: 0.3; }
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-30px) translateX(20px) scale(1.05); opacity: 0.2; }
+            50% { transform: translateY(-10px) translateX(-15px) scale(0.95); opacity: 0.4; }
+            75% { transform: translateY(15px) translateX(12px) scale(1.02); opacity: 0.25; }
         }
 
         /* === NAVIGATION === */
@@ -155,6 +182,7 @@
         /* === HERO SECTION === */
         .hero {
             height: 100vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -165,45 +193,8 @@
 
         .hero-content {
             max-width: 900px;
-            padding: 0 24px;
+            padding: 60px 24px 0;
             z-index: 2;
-        }
-
-        .company-logo {
-            width: 120px;
-            height: 120px;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-purple) 100%);
-            border-radius: 28px;
-            margin: 0 auto 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 48px;
-            font-weight: 800;
-            color: var(--text-primary);
-            box-shadow: 
-                0 32px 64px rgba(0, 122, 255, 0.25),
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            animation: float 4s ease-in-out infinite;
-            position: relative;
-            letter-spacing: -0.02em;
-        }
-
-        .company-logo::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(135deg, var(--primary-blue), transparent, var(--secondary-purple));
-            border-radius: 30px;
-            z-index: -1;
-            opacity: 0.4;
-            filter: blur(8px);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-12px) rotate(1deg); }
         }
 
         .hero h1 {
@@ -212,14 +203,14 @@
             color: var(--text-primary);
             margin-bottom: 24px;
             letter-spacing: -0.04em;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.85) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
         .hero .tagline {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             color: var(--text-secondary);
             margin-bottom: 16px;
             font-weight: 400;
@@ -228,12 +219,15 @@
         }
 
         .hero .subtitle {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             color: var(--text-tertiary);
             margin-bottom: 56px;
             font-weight: 400;
             line-height: 1.5;
             letter-spacing: -0.01em;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .cta-button {
@@ -243,14 +237,14 @@
             background: var(--primary-blue);
             color: var(--text-primary);
             text-decoration: none;
-            padding: 18px 36px;
+            padding: 20px 40px;
             border-radius: 16px;
             font-weight: 600;
             font-size: 17px;
             letter-spacing: -0.01em;
             transition: var(--transition);
             box-shadow: 
-                0 12px 40px rgba(0, 122, 255, 0.3),
+                0 12px 40px rgba(0, 122, 255, 0.25),
                 0 4px 12px rgba(0, 0, 0, 0.3);
             position: relative;
             overflow: hidden;
@@ -263,14 +257,14 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
             transition: left 0.5s;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 
-                0 20px 60px rgba(0, 122, 255, 0.4),
+                0 20px 60px rgba(0, 122, 255, 0.35),
                 0 8px 24px rgba(0, 0, 0, 0.4);
         }
 
@@ -280,7 +274,7 @@
 
         /* === APPS SECTION === */
         .apps-section {
-            padding: 140px 24px;
+            padding: 60px 24px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -298,7 +292,7 @@
             text-align: center;
             font-size: 1.3rem;
             color: var(--text-tertiary);
-            margin-bottom: 100px;
+            margin-bottom: 60px;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
@@ -307,9 +301,9 @@
 
         .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
             gap: 40px;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
         }
 
         .app-card {
@@ -330,19 +324,19 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.03) 0%, 
-                rgba(0, 122, 255, 0.02) 50%,
-                rgba(255, 255, 255, 0.01) 100%);
+                rgba(255, 255, 255, 0.02) 0%, 
+                rgba(0, 122, 255, 0.015) 50%,
+                rgba(255, 255, 255, 0.005) 100%);
             border-radius: var(--border-radius-large);
             opacity: 0;
             transition: opacity 0.5s ease;
         }
 
         .app-card:hover {
-            transform: translateY(-12px);
+            transform: translateY(-8px);
             box-shadow: 
                 var(--shadow-hover),
-                0 8px 32px rgba(0, 122, 255, 0.1);
+                0 8px 32px rgba(0, 122, 255, 0.08);
         }
 
         .app-card:hover::before {
@@ -352,22 +346,32 @@
         .app-header {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 24px;
             margin-bottom: 32px;
         }
 
         .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
+            width: 88px;
+            height: 88px;
+            border-radius: 22px;
             flex-shrink: 0;
             position: relative;
             z-index: 1;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-icon svg {
+            width: 48px;
+            height: 48px;
+            fill: white;
         }
 
         .app-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             color: var(--text-primary);
             margin-bottom: 8px;
             font-weight: 600;
@@ -382,6 +386,7 @@
             letter-spacing: -0.01em;
             position: relative;
             z-index: 1;
+            font-weight: 500;
         }
 
         .app-description {
@@ -397,19 +402,19 @@
         .app-features {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
+            gap: 10px;
             position: relative;
             z-index: 1;
         }
 
         .feature-tag {
-            background: rgba(0, 122, 255, 0.1);
+            background: rgba(0, 122, 255, 0.08);
             color: var(--primary-blue-light);
-            padding: 6px 14px;
-            border-radius: 12px;
+            padding: 8px 16px;
+            border-radius: 14px;
             font-size: 13px;
             font-weight: 500;
-            border: 1px solid rgba(0, 122, 255, 0.2);
+            border: 1px solid rgba(0, 122, 255, 0.15);
         }
 
         /* === COMING SOON CARD === */
@@ -419,8 +424,8 @@
             position: relative;
             overflow: hidden;
             text-align: center;
-            border: 2px dashed rgba(255, 255, 255, 0.1);
-            background: rgba(255, 255, 255, 0.01);
+            border: 2px dashed rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.005);
         }
 
         .coming-soon-card::before {
@@ -431,13 +436,13 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(0, 122, 255, 0.02) 0%, 
-                rgba(88, 86, 214, 0.01) 100%);
+                rgba(0, 122, 255, 0.015) 0%, 
+                rgba(88, 86, 214, 0.008) 100%);
             border-radius: var(--border-radius-large);
         }
 
         .coming-soon-card h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--text-secondary);
             margin-bottom: 16px;
             font-weight: 600;
@@ -455,7 +460,7 @@
 
         /* === ABOUT SECTION === */
         .about-section {
-            padding: 100px 24px;
+            padding: 60px 24px;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
@@ -473,8 +478,8 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(135deg, 
-                rgba(0, 122, 255, 0.03) 0%,
-                rgba(255, 255, 255, 0.01) 100%);
+                rgba(0, 122, 255, 0.02) 0%,
+                rgba(255, 255, 255, 0.008) 100%);
             border-radius: var(--border-radius-xl);
         }
 
@@ -501,8 +506,8 @@
         footer {
             padding: 80px 24px 60px;
             text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.2);
         }
 
         .footer-content {
@@ -546,19 +551,21 @@
             .apps-grid { grid-template-columns: 1fr; gap: 24px; }
             .app-card { padding: 32px; }
             .about-card { padding: 48px 32px; }
-            .company-logo { width: 100px; height: 100px; font-size: 40px; }
             nav ul { gap: 24px; }
             .footer-links { gap: 20px; }
+            .brand-mark { width: 120px; height: 120px; }
+            .brand-icon { width: 80px; height: 80px; }
+            .brand-icon svg { width: 48px; height: 48px; }
         }
 
         /* === SELECTION STYLING === */
         ::selection {
-            background: rgba(0, 122, 255, 0.3);
+            background: rgba(0, 122, 255, 0.25);
             color: var(--text-primary);
         }
 
         ::-moz-selection {
-            background: rgba(0, 122, 255, 0.3);
+            background: rgba(0, 122, 255, 0.25);
             color: var(--text-primary);
         }
 
@@ -586,12 +593,22 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <div class="company-logo">BY</div>
+            <!-- Brand Mark -->
+            <div class="brand-mark">
+                <div class="brand-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H19C20.1 7 21 7.9 21 9ZM7 19H17V16H7V19Z"/>
+                    </svg>
+                </div>
+            </div>
+            
             <h1>BYSN Apps</h1>
             <p class="tagline">Crafting Premium iOS Experiences</p>
             <p class="subtitle">We believe in software that people genuinely enjoy using, not just tolerate. Every app is designed with intention, built with care, and refined until it feels effortless.</p>
             <a href="#apps" class="cta-button">
-                <span>📱</span>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17 2.5V9A2.5 2.5 0 0 1 14.5 11.5H8A2.5 2.5 0 0 0 5.5 14V20.5A2.5 2.5 0 0 0 8 23H16A2.5 2.5 0 0 0 18.5 20.5V11.5H20.5A2.5 2.5 0 0 0 23 9V2.5A2.5 2.5 0 0 0 20.5 0H19.5A2.5 2.5 0 0 0 17 2.5Z"/>
+                </svg>
                 Explore Our Apps
             </a>
         </div>
@@ -606,7 +623,11 @@
             <!-- Cake App -->
             <a href="apps/cake" class="app-card glass-container fade-in">
                 <div class="app-header">
-                    <img src="/assets/cakeLogo.png" alt="Cake App Logo" class="app-icon" onerror="this.style.background='linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%)'; this.innerHTML='🎂'; this.style.display='flex'; this.style.alignItems='center'; this.style.justifyContent='center'; this.style.fontSize='36px';">
+                    <div class="app-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H19C20.1 7 21 7.9 21 9ZM7 19H17V16H7V19Z"/>
+                        </svg>
+                    </div>
                     <div class="app-info">
                         <h3>Cake</h3>
                         <p class="app-tagline">Birthday Reminders</p>
@@ -663,6 +684,22 @@
             };
         };
 
+        // === SMOOTH BRAND MARK ANIMATION ===
+        const brandMark = document.querySelector('.brand-mark');
+        if (brandMark) {
+            let isHovered = false;
+
+            brandMark.addEventListener('mouseenter', () => {
+                isHovered = true;
+                brandMark.style.transform = 'scale(1.05)';
+            });
+
+            brandMark.addEventListener('mouseleave', () => {
+                isHovered = false;
+                brandMark.style.transform = 'scale(1)';
+            });
+        }
+
         // === SMOOTH SCROLL FOR NAVIGATION ===
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -683,8 +720,8 @@
             const orbs = document.querySelectorAll('.floating-orb');
             
             orbs.forEach((orb, index) => {
-                const speed = 0.2 + (index * 0.08);
-                const rotation = scrolled * 0.015;
+                const speed = 0.15 + (index * 0.05);
+                const rotation = scrolled * 0.01;
                 orb.style.transform = `translateY(${scrolled * speed}px) rotate(${rotation}deg)`;
             });
         }, 10);
@@ -713,23 +750,39 @@
         // === ENHANCED HOVER EFFECTS ===
         document.querySelectorAll('.app-card').forEach(card => {
             card.addEventListener('mouseenter', function() {
-                this.style.boxShadow = '0 32px 80px rgba(0, 0, 0, 0.6), 0 8px 32px rgba(0, 122, 255, 0.15)';
+                this.style.boxShadow = '0 32px 80px rgba(0, 0, 0, 0.6), 0 8px 32px rgba(0, 122, 255, 0.1)';
             });
             
             card.addEventListener('mouseleave', function() {
-                this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+                this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08)';
             });
         });
 
         // === PERFORMANCE OPTIMIZATION ===
-        // Preload critical images
-        const preloadImages = [
-            '/assets/cakeLogo.png'
-        ];
+        // Reduce motion for accessibility
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+        
+        if (prefersReducedMotion.matches) {
+            document.querySelectorAll('.floating-orb').forEach(orb => {
+                orb.style.animation = 'none';
+            });
+        }
 
-        preloadImages.forEach(src => {
-            const img = new Image();
-            img.src = src;
+        // Intersection Observer for performance
+        const performanceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Enable animations when in view
+                    entry.target.style.willChange = 'transform';
+                } else {
+                    // Disable when out of view
+                    entry.target.style.willChange = 'auto';
+                }
+            });
+        });
+
+        document.querySelectorAll('.floating-orb').forEach(el => {
+            performanceObserver.observe(el);
         });
     </script>
 </body>
