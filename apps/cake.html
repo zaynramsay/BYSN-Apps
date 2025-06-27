@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cake – Birthday Reminders</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
+            background: #0a0a0a;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(252, 61, 79, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(252, 61, 79, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(252, 61, 79, 0.06) 0%, transparent 50%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #ffffff;
+            position: relative;
+        }
+
+        /* Sophisticated glassmorphism */
+        .glass-container {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 16px 32px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #FC3D4F;
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        nav a:hover {
+            color: #ffffff;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 24px;
+            z-index: 2;
+        }
+
+        .app-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%);
+            border-radius: 32px;
+            margin: 0 auto 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
+            box-shadow: 
+                0 32px 64px rgba(252, 61, 79, 0.3),
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: float 4s ease-in-out infinite;
+            position: relative;
+        }
+
+        .app-icon::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #FC3D4F, transparent, #FC3D4F);
+            border-radius: 34px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 32px;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 56px;
+            font-weight: 400;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            background: #FC3D4F;
+            color: white;
+            text-decoration: none;
+            padding: 20px 40px;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 17px;
+            letter-spacing: -0.01em;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 
+                0 12px 40px rgba(252, 61, 79, 0.4),
+                0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 20px 60px rgba(252, 61, 79, 0.5),
+                0 8px 24px rgba(0, 0, 0, 0.4);
+        }
+
+        .download-button:hover::before {
+            left: 100%;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 140px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 100px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            margin-bottom: 100px;
+        }
+
+        .feature-card {
+            padding: 48px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%, 
+                rgba(252, 61, 79, 0.02) 50%,
+                rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 32px 80px rgba(0, 0, 0, 0.5),
+                0 8px 32px rgba(252, 61, 79, 0.1);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(252, 61, 79, 0.1);
+            border: 1px solid rgba(252, 61, 79, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(252, 61, 79, 0.15);
+            border-color: rgba(252, 61, 79, 0.3);
+            box-shadow: 0 8px 24px rgba(252, 61, 79, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.75rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Privacy Section */
+        .privacy-section {
+            padding: 100px 24px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-card {
+            padding: 80px 60px;
+            margin: 40px 0;
+            border-radius: 32px;
+            position: relative;
+        }
+
+        .privacy-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(252, 61, 79, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 32px;
+        }
+
+        .privacy-card h3 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 19px;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 140px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, 
+                rgba(252, 61, 79, 0.03) 0%,
+                rgba(0, 0, 0, 0.2) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 56px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            letter-spacing: -0.01em;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 24px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Sophisticated floating elements */
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(252, 61, 79, 0.1) 0%, transparent 70%);
+            filter: blur(1px);
+            animation: drift 8s ease-in-out infinite;
+        }
+
+        .orb-1 {
+            width: 200px;
+            height: 200px;
+            top: 15%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .orb-3 {
+            width: 150px;
+            height: 150px;
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 6s;
+        }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) scale(1.1);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-15px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(15px) translateX(10px) scale(1.05);
+                opacity: 0.25;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .features h2 {
+                font-size: 2.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            
+            .feature-card {
+                padding: 32px;
+            }
+            
+            .privacy-card {
+                padding: 48px 32px;
+            }
+            
+            .app-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 48px;
+            }
+            
+            nav ul {
+                gap: 24px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
+            }
+        }
+
+        /* App Store badge styling */
+        .app-store-badge {
+            display: inline-block;
+            width: 200px;
+            height: auto;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: brightness(0.9);
+        }
+
+        .app-store-badge:hover {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        /* Scroll-triggered animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sophisticated floating orbs -->
+    <div class="floating-orb orb-1"></div>
+    <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-container">
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="app-icon">🎂</div>
+            <h1>Cake</h1>
+            <p>Never miss a birthday again.<br>Celebrate better — without the last-minute panic.</p>
+            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594" class="download-button">
+                <span>📱</span>
+                Download for iPhone
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="fade-in">Everything you need to celebrate</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">📱</div>
+                <h3>Beautiful Widgets</h3>
+                <p>Lock & Home Screen widgets with glanceable countdowns. Tap to call, text, or get gift ideas right from your widget.</p>
+            </div>
+            
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">📝</div>
+                <h3>Smart Reminders</h3>
+                <p>Customizable reminders that actually work. Get notified 3 days before, day-of, or set your own perfect timing.</p>
+            </div>
+            
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">👥</div>
+                <h3>Effortless Sync</h3>
+                <p>Instantly syncs with your iPhone Contacts. Add anyone's birthday — friends, family, pets, or coworkers.</p>
+            </div>
+            
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">✨</div>
+                <h3>Meaningful Insights</h3>
+                <p>See how rare each birthday is with real data. Discover "On This Day" history and personality insights.</p>
+            </div>
+            
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">🏷️</div>
+                <h3>Smart Organization</h3>
+                <p>Tag close friends, family, or work contacts. Auto-clean stale birthdays and track gift ideas for next year.</p>
+            </div>
+            
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">🎯</div>
+                <h3>Quick Actions</h3>
+                <p>Call, text, or set reminders directly from your Lock Screen. Everything you need, right at your fingertips.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy-section" id="privacy">
+        <div class="privacy-card glass-container fade-in">
+            <h3>Built for Privacy</h3>
+            <p>100% on-device processing means your personal data never leaves your iPhone. No accounts, no tracking, no data collection. Your relationships and celebrations stay private, exactly as they should be.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <h2 class="fade-in">Prevent birthday heartbreak</h2>
+        <p class="fade-in">Cake makes birthday tracking simple, private, and delightful — so you're always prepared, never scrambling, and always celebrating the people who matter.</p>
+        <div class="fade-in">
+            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Alec Fradkin. Made with care for celebrating life's special moments.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Sophisticated parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.floating-orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.3 + (index * 0.1);
+                const rotation = scrolled * 0.02;
+                orb.style.transform = `translateY(${scrolled * speed}px) rotate(${rotation}deg)`;
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 32px 80px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(252, 61, 79, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+            });
+        });
+    </script>
+</body>
+</html>
