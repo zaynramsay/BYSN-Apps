@@ -155,46 +155,17 @@
             letter-spacing: -0.01em;
         }
 
-        .download-button {
-            display: inline-flex;
-            align-items: center;
-            gap: 14px;
-            background: #FC3D4F;
-            color: white;
-            text-decoration: none;
-            padding: 20px 40px;
-            border-radius: 16px;
-            font-weight: 600;
-            font-size: 17px;
-            letter-spacing: -0.01em;
+        .app-store-hero-badge {
+            display: inline-block;
+            width: 240px;
+            height: auto;
             transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-            box-shadow: 
-                0 12px 40px rgba(252, 61, 79, 0.4),
-                0 4px 12px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
+            filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
         }
 
-        .download-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .download-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 
-                0 20px 60px rgba(252, 61, 79, 0.5),
-                0 8px 24px rgba(0, 0, 0, 0.4);
-        }
-
-        .download-button:hover::before {
-            left: 100%;
+        .app-store-hero-badge:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
         }
 
         /* Features Section */
@@ -525,9 +496,8 @@
             <div class="app-icon">🎂</div>
             <h1>Cake</h1>
             <p>Never miss a birthday again.<br>Celebrate better — without the last-minute panic.</p>
-            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594" class="download-button">
-                <span>📱</span>
-                Download for iPhone
+            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-hero-badge">
             </a>
         </div>
     </section>
