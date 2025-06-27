@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Cake – Birthday Reminders</title>
+    <title>Cake – Birthday Reminders</title>
     <style>
         * {
             margin: 0;
@@ -15,614 +15,613 @@
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
             background: #0a0a0a;
             background-image: 
-                radial-gradient(circle at 20% 50%, rgba(252, 61, 79, 0.08) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(252, 61, 79, 0.05) 0%, transparent 50%);
-            color: #ffffff;
-            line-height: 1.7;
+                radial-gradient(circle at 20% 50%, rgba(252, 61, 79, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(252, 61, 79, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(252, 61, 79, 0.06) 0%, transparent 50%);
             min-height: 100vh;
+            overflow-x: hidden;
+            color: #ffffff;
             position: relative;
         }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 60px 24px;
-        }
-
-        /* Navigation back to main site */
-        .nav-back {
-            position: fixed;
-            top: 24px;
-            left: 24px;
-            z-index: 1000;
+        /* Sophisticated glassmorphism */
+        .glass-container {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(40px);
             -webkit-backdrop-filter: blur(40px);
             border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px 20px;
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            padding: 16px 32px;
             transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            opacity: 0;
-            transform: translateY(-10px);
         }
 
-        .nav-back.visible {
-            opacity: 1;
-            transform: translateY(0);
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
         }
 
-        .nav-back a {
+        nav a {
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
             font-weight: 500;
             font-size: 15px;
             letter-spacing: -0.01em;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
         }
 
-        .nav-back .nav-logo {
-            width: 20px;
-            height: 20px;
-            border-radius: 5px;
-            opacity: 0;
-            transform: scale(0.8);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #FC3D4F;
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .nav-back.show-logo .nav-logo {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        .nav-back:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(252, 61, 79, 0.2);
-        }
-
-        .nav-back:hover a {
+        nav a:hover {
             color: #ffffff;
         }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 80px;
-            padding-top: 40px;
+        nav a:hover::after {
+            width: 100%;
         }
 
-        .app-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            margin: 0 auto 24px;
+        /* Hero Section */
+        .hero {
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 24px;
+            z-index: 2;
+        }
+
+        .app-icon {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%);
+            border-radius: 32px;
+            margin: 0 auto 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 64px;
             box-shadow: 
-                0 20px 40px rgba(252, 61, 79, 0.2),
-                0 4px 16px rgba(0, 0, 0, 0.3);
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+                0 32px 64px rgba(252, 61, 79, 0.3),
+                0 8px 32px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            animation: float 4s ease-in-out infinite;
+            position: relative;
         }
 
-        .app-icon img {
-            width: 100%;
-            height: 100%;
-            border-radius: 20px;
+        .app-icon::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #FC3D4F, transparent, #FC3D4F);
+            border-radius: 34px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(8px);
         }
 
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1deg); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 800;
             color: #ffffff;
-            margin-bottom: 16px;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.8) 100%);
+            margin-bottom: 32px;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .last-updated {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 16px;
-            font-style: italic;
+        .hero p {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 56px;
+            font-weight: 400;
+            line-height: 1.5;
             letter-spacing: -0.01em;
         }
 
-        /* Content styling */
-        .content {
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(40px);
-            -webkit-backdrop-filter: blur(40px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 24px;
-            padding: 60px;
-            box-shadow: 
-                0 20px 60px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        .app-store-hero-badge {
+            display: inline-block;
+            width: 240px;
+            height: auto;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.4)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
         }
 
-        h2 {
-            font-size: 2rem;
+        .app-store-hero-badge:hover {
+            transform: translateY(-2px) scale(1.02);
+            filter: drop-shadow(0 20px 60px rgba(0, 0, 0, 0.5)) drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Features Section */
+        .features {
+            padding: 140px 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 3.5rem;
             color: #ffffff;
-            margin: 48px 0 24px 0;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            position: relative;
-            padding-bottom: 12px;
+            margin-bottom: 100px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
         }
 
-        h2:first-child {
-            margin-top: 0;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+            margin-bottom: 100px;
         }
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 2px;
-            background: linear-gradient(90deg, #FC3D4F, rgba(252, 61, 79, 0.3));
-            border-radius: 1px;
-        }
-
-        h3 {
-            font-size: 1.4rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin: 32px 0 16px 0;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-        }
-
-        p {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 20px;
-            font-size: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        ul {
-            margin: 16px 0 24px 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        li {
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 12px;
-            padding-left: 24px;
-            position: relative;
-            font-size: 16px;
-            letter-spacing: -0.01em;
-        }
-
-        li:before {
-            content: '•';
-            color: #FC3D4F;
-            font-weight: bold;
-            position: absolute;
-            left: 0;
-            font-size: 18px;
-        }
-
-        /* Summary box */
-        .summary-box {
-            background: linear-gradient(135deg, 
-                rgba(252, 61, 79, 0.08) 0%, 
-                rgba(252, 61, 79, 0.04) 100%);
-            border: 1px solid rgba(252, 61, 79, 0.2);
-            border-radius: 20px;
-            padding: 32px;
-            margin: 32px 0;
+        .feature-card {
+            padding: 48px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
+            border-radius: 24px;
         }
 
-        .summary-box::before {
+        .feature-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 3px;
-            background: linear-gradient(90deg, #FC3D4F, #FF6B7D);
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.03) 0%, 
+                rgba(252, 61, 79, 0.02) 50%,
+                rgba(255, 255, 255, 0.01) 100%);
+            border-radius: 24px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
 
-        .summary-box h3 {
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 
+                0 32px 80px rgba(0, 0, 0, 0.5),
+                0 8px 32px rgba(252, 61, 79, 0.1);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 72px;
+            height: 72px;
+            background: rgba(252, 61, 79, 0.1);
+            border: 1px solid rgba(252, 61, 79, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 32px;
+            position: relative;
+            z-index: 1;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: rgba(252, 61, 79, 0.15);
+            border-color: rgba(252, 61, 79, 0.3);
+            box-shadow: 0 8px 24px rgba(252, 61, 79, 0.2);
+        }
+
+        .feature-card h3 {
+            font-size: 1.75rem;
             color: #ffffff;
-            margin-top: 0;
             margin-bottom: 20px;
-            font-size: 1.3rem;
-        }
-
-        .summary-box li {
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .summary-box strong {
-            color: #FC3D4F;
             font-weight: 600;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Section divider */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            margin: 48px 0;
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.7;
+            font-size: 16px;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Footer */
-        .footer {
+        /* Privacy Section */
+        .privacy-section {
+            padding: 100px 24px;
             text-align: center;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            color: rgba(255, 255, 255, 0.5);
-            font-style: italic;
-            font-size: 15px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .privacy-card {
+            padding: 80px 60px;
+            margin: 40px 0;
+            border-radius: 32px;
+            position: relative;
+        }
+
+        .privacy-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(252, 61, 79, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: 32px;
+        }
+
+        .privacy-card h3 {
+            font-size: 2.5rem;
+            color: #ffffff;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy-card p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 19px;
+            line-height: 1.7;
+            letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 140px 24px;
+            text-align: center;
+            background: linear-gradient(135deg, 
+                rgba(252, 61, 79, 0.03) 0%,
+                rgba(0, 0, 0, 0.2) 100%);
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            color: #ffffff;
+            margin-bottom: 32px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 56px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
             letter-spacing: -0.01em;
         }
 
-        /* Floating orbs */
+        /* Footer */
+        footer {
+            padding: 80px 24px 60px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Sophisticated floating elements */
         .floating-orb {
             position: absolute;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(252, 61, 79, 0.06) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(252, 61, 79, 0.1) 0%, transparent 70%);
             filter: blur(1px);
-            animation: drift 12s ease-in-out infinite;
-            pointer-events: none;
+            animation: drift 8s ease-in-out infinite;
         }
 
         .orb-1 {
-            width: 150px;
-            height: 150px;
-            top: 20%;
-            right: 10%;
+            width: 200px;
+            height: 200px;
+            top: 15%;
+            left: 5%;
             animation-delay: 0s;
         }
 
         .orb-2 {
-            width: 100px;
-            height: 100px;
+            width: 300px;
+            height: 300px;
+            top: 70%;
+            right: 10%;
+            animation-delay: 3s;
+        }
+
+        .orb-3 {
+            width: 150px;
+            height: 150px;
             bottom: 30%;
-            left: 5%;
+            left: 15%;
             animation-delay: 6s;
         }
 
         @keyframes drift {
             0%, 100% {
-                transform: translateY(0px) translateX(0px);
+                transform: translateY(0px) translateX(0px) scale(1);
                 opacity: 0.3;
             }
+            25% {
+                transform: translateY(-30px) translateX(20px) scale(1.1);
+                opacity: 0.2;
+            }
             50% {
-                transform: translateY(-20px) translateX(15px);
-                opacity: 0.1;
+                transform: translateY(-10px) translateX(-15px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(15px) translateX(10px) scale(1.05);
+                opacity: 0.25;
             }
         }
 
-        /* Responsive design */
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .container {
-                padding: 40px 20px;
+            .hero h1 {
+                font-size: 3rem;
             }
-
-            .content {
-                padding: 40px 24px;
-                border-radius: 20px;
+            
+            .hero p {
+                font-size: 1.1rem;
             }
-
-            h1 {
+            
+            .features h2 {
                 font-size: 2.5rem;
             }
-
-            h2 {
-                font-size: 1.6rem;
-                margin: 32px 0 20px 0;
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
             }
-
-            h3 {
-                font-size: 1.2rem;
-                margin: 24px 0 12px 0;
+            
+            .feature-card {
+                padding: 32px;
             }
-
-            .summary-box {
-                padding: 24px;
-                margin: 24px 0;
+            
+            .privacy-card {
+                padding: 48px 32px;
             }
-
-            .nav-back {
-                position: relative;
-                top: auto;
-                left: auto;
-                margin-bottom: 20px;
-                display: inline-block;
+            
+            .app-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 48px;
+            }
+            
+            nav ul {
+                gap: 24px;
+            }
+            
+            .cta-section h2 {
+                font-size: 2.2rem;
             }
         }
 
-        /* Smooth scroll */
-        html {
-            scroll-behavior: smooth;
+        /* App Store badge styling */
+        .app-store-badge {
+            display: inline-block;
+            width: 200px;
+            height: auto;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            filter: brightness(0.9);
         }
 
-        /* Selection styling */
-        ::selection {
-            background: rgba(252, 61, 79, 0.3);
-            color: #ffffff;
+        .app-store-badge:hover {
+            transform: scale(1.05);
+            filter: brightness(1);
         }
 
-        ::-moz-selection {
-            background: rgba(252, 61, 79, 0.3);
-            color: #ffffff;
+        /* Scroll-triggered animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
-    <!-- Floating orbs -->
+    <!-- Sophisticated floating orbs -->
     <div class="floating-orb orb-1"></div>
     <div class="floating-orb orb-2"></div>
+    <div class="floating-orb orb-3"></div>
 
     <!-- Navigation -->
-    <div class="nav-back">
-        <a href="https://www.bysnapps.com/apps/cake">
-            ← 
-            <img src="assets/cakeLogo.png" alt="Cake Logo" class="nav-logo">
-            Back to Cake
-        </a>
-    </div>
+    <nav class="glass-container">
+        <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#download">Download</a></li>
+        </ul>
+    </nav>
 
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="app-icon">
-                <img src="assets/cakeLogo.png" alt="Cake App Logo">
-            </div>
-            <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: May 2, 2025</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="app-icon">🎂</div>
+            <h1>Cake</h1>
+            <p>Never miss a birthday again.<br>Celebrate better — without the last-minute panic.</p>
+            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-hero-badge">
+            </a>
         </div>
+    </section>
 
-        <!-- Content -->
-        <div class="content">
-            <h2>Introduction</h2>
-            <p>Thank you for choosing Cake – Birthday Reminders ("the App," "we," "our," or "us"). We are committed to protecting your privacy and providing a secure user experience. This Privacy Policy explains how we collect, use, protect, and handle your information when you use our App.</p>
-            
-            <div class="summary-box">
-                <h3>Summary of Key Points</h3>
-                <ul>
-                    <li><strong>Zero Data Transmission</strong>: The App operates entirely offline and does not transmit your data to any servers.</li>
-                    <li><strong>On-Device Processing</strong>: All contact information is processed locally on your device.</li>
-                    <li><strong>No Third-Party Sharing</strong>: Your data is never shared with third parties.</li>
-                    <li><strong>No Tracking or Analytics</strong>: We do not track your usage or collect analytics.</li>
-                </ul>
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="fade-in">Everything you need to celebrate</h2>
+        <div class="features-grid">
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">📱</div>
+                <h3>Beautiful Widgets</h3>
+                <p>Lock & Home Screen widgets with glanceable countdowns. Tap to call, text, or get gift ideas right from your widget.</p>
             </div>
             
-            <h2>1. Information We Collect</h2>
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">📝</div>
+                <h3>Smart Reminders</h3>
+                <p>Customizable reminders that actually work. Get notified 3 days before, day-of, or set your own perfect timing.</p>
+            </div>
             
-            <h3>1.1 Contact Information</h3>
-            <p>With your explicit permission, the App accesses your device's contact list to extract birthday-related information. This includes:</p>
-            <ul>
-                <li>Names</li>
-                <li>Birthday dates</li>
-                <li>Contact identifiers</li>
-                <li>Optional: associated photos</li>
-            </ul>
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">👥</div>
+                <h3>Effortless Sync</h3>
+                <p>Instantly syncs with your iPhone Contacts. Add anyone's birthday — friends, family, pets, or coworkers.</p>
+            </div>
             
-            <h3>1.2 User Preferences</h3>
-            <p>We store your preferences for:</p>
-            <ul>
-                <li>Notification settings</li>
-                <li>Display preferences</li>
-                <li>Sorting and filtering options</li>
-                <li>Blacklisted contacts</li>
-            </ul>
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">✨</div>
+                <h3>Meaningful Insights</h3>
+                <p>See how rare each birthday is with real data. Discover "On This Day" history and personality insights.</p>
+            </div>
             
-            <h3>1.3 Local Storage</h3>
-            <p>The App stores the following data locally using Apple's SwiftData framework:</p>
-            <ul>
-                <li>Birthday entries</li>
-                <li>Reminder settings</li>
-                <li>Tags and categories</li>
-                <li>Custom notes</li>
-                <li>Local contact identifiers for blacklisted contacts</li>
-            </ul>
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">🏷️</div>
+                <h3>Smart Organization</h3>
+                <p>Tag close friends, family, or work contacts. Auto-clean stale birthdays and track gift ideas for next year.</p>
+            </div>
             
-            <p><strong>Important</strong>: All data remains exclusively on your device. The App does not use encryption for stored data beyond what is provided by your device's operating system.</p>
-            
-            <h2>2. How We Use Your Information</h2>
-            
-            <h3>2.1 Contacts Access</h3>
-            <p>We use your contacts data to:</p>
-            <ul>
-                <li>Display birthday information</li>
-                <li>Create personalized birthday lists</li>
-                <li>Filter and organize birthday entries</li>
-            </ul>
-            
-            <h3>2.2 Reminders Integration</h3>
-            <p>With your permission, we use the Reminders framework to:</p>
-            <ul>
-                <li>Create birthday reminders</li>
-                <li>Manage reminder preferences</li>
-                <li>Set custom notification schedules</li>
-            </ul>
-            
-            <h3>2.3 Notifications</h3>
-            <p>When authorized, we use local notifications to:</p>
-            <ul>
-                <li>Alert you of upcoming birthdays</li>
-                <li>Send custom reminders based on your settings</li>
-                <li>Provide timely birthday information</li>
-            </ul>
-            
-            <h2>3. Data Protection and Security</h2>
-            
-            <h3>3.1 On-Device Processing</h3>
-            <p>All data processing occurs exclusively on your device. No personal information is transmitted over the internet or stored on external servers.</p>
-            
-            <h3>3.2 No Internet Communication</h3>
-            <p>The App is designed to function completely offline and does not include any networking capabilities. It does not:</p>
-            <ul>
-                <li>Connect to any servers</li>
-                <li>Transmit usage data</li>
-                <li>Upload contact information</li>
-                <li>Use cloud services for storage</li>
-            </ul>
-            
-            <h3>3.3 Third-Party Libraries</h3>
-            <p>The App incorporates the following types of third-party Swift libraries:</p>
-            <ul>
-                <li>UI enhancement libraries</li>
-                <li>Utility frameworks</li>
-                <li>Development tools</li>
-            </ul>
-            
-            <p>These libraries operate entirely within the App's sandbox and do not collect or transmit user data. We carefully select dependencies that respect user privacy.</p>
-            
-            <h2>4. Your Choices and Rights</h2>
-            
-            <h3>4.1 Permission Controls</h3>
-            <p>You maintain full control over the App's permissions:</p>
-            <ul>
-                <li>Contacts access can be granted or revoked through your device settings</li>
-                <li>Notification permissions can be adjusted at any time</li>
-                <li>Reminders access is optional and configurable</li>
-            </ul>
-            
-            <h3>4.2 Data Management</h3>
-            <p>You can manage your data directly within the App:</p>
-            <ul>
-                <li>Delete individual birthday entries</li>
-                <li>Blacklist specific contacts</li>
-                <li>Reset all preferences</li>
-                <li>Clear all stored data</li>
-            </ul>
-            
-            <h3>4.3 Data Deletion</h3>
-            <p>To completely remove your data:</p>
-            <ul>
-                <li>Use the in-App "Clear All Data" function (if available)</li>
-                <li>Uninstall the App, which will remove all locally stored information</li>
-            </ul>
-            
-            <p>Note: Blacklisted contact identifiers are retained locally to prevent unwanted re-importing unless explicitly cleared.</p>
-            
-            <h2>5. Future Features</h2>
-            
-            <h3>5.1 In-App Purchases</h3>
-            <p>The current version contains no in-app purchases. If introduced in future updates:</p>
-            <ul>
-                <li>We will provide clear information about available purchases</li>
-                <li>No payment information will be stored within the App</li>
-                <li>Transactions will be processed through Apple's secure payment system</li>
-            </ul>
-            
-            <h3>5.2 App Enhancements</h3>
-            <p>Future versions may include:</p>
-            <ul>
-                <li>Additional customization options</li>
-                <li>Enhanced reminder capabilities</li>
-                <li>Improved user interface</li>
-            </ul>
-            
-            <p>Any feature that changes our privacy practices will be reflected in an updated Privacy Policy.</p>
-            
-            <h2>6. Children's Privacy</h2>
-            
-            <p>The App is not directed at children under the age of 13. Since all data is stored locally on the device and not transmitted anywhere, parents or guardians are responsible for managing app access and potential uninstallation if concerned about their child's use of the App.</p>
-            
-            <h2>7. Changes to This Policy</h2>
-            
-            <p>We may update this Privacy Policy as we release new features or to reflect changes in legal requirements. We will notify you of any material changes through:</p>
-            <ul>
-                <li>In-App notifications (when applicable)</li>
-                <li>Update notes in the App Store</li>
-            </ul>
-            
-            <h2>8. No Contact Mechanism</h2>
-            
-            <p>The current version of the App does not include any built-in support or contact features. Since the App operates entirely offline with no data transmission, there is no mechanism or need to contact the developer regarding data-related concerns.</p>
-            
-            <p>Future updates may introduce support mechanisms if needed, which would be reflected in an updated Privacy Policy.</p>
-            
-            <h2>9. California Privacy Rights</h2>
-            
-            <p>Under California Civil Code Section 1798.83, California residents may request certain information regarding disclosure of personal information to third parties for direct marketing purposes. Since we do not share your information with third parties for marketing purposes, these provisions do not apply to our App.</p>
-            
-            <h2>10. International Users</h2>
-            
-            <p>The App is designed to comply with privacy regulations worldwide, including GDPR and CCPA requirements. As the App processes all data locally on your device without any data transfer, most jurisdictional requirements regarding data transfers do not apply.</p>
-            
-            <div class="section-divider"></div>
-            
-            <div class="footer">
-                <p>By using Cake – Birthday Reminders, you agree to the terms outlined in this Privacy Policy.</p>
+            <div class="feature-card glass-container fade-in">
+                <div class="feature-icon">🎯</div>
+                <h3>Quick Actions</h3>
+                <p>Call, text, or set reminders directly from your Lock Screen. Everything you need, right at your fingertips.</p>
             </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy-section" id="privacy">
+        <div class="privacy-card glass-container fade-in">
+            <h3>Built for Privacy</h3>
+            <p>100% on-device processing means your personal data never leaves your iPhone. No accounts, no tracking, no data collection. Your relationships and celebrations stay private, exactly as they should be.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" id="download">
+        <h2 class="fade-in">Prevent birthday heartbreak</h2>
+        <p class="fade-in">Cake makes birthday tracking simple, private, and delightful — so you're always prepared, never scrambling, and always celebrating the people who matter.</p>
+        <div class="fade-in">
+            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
+                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Alec Fradkin. Made with care for celebrating life's special moments.</p>
+    </footer>
 
     <script>
-        // Enhanced scroll effects with logo transition
-        let headerIcon;
-        let navBack;
-        let navLogo;
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            
-            // Initialize elements if not already done
-            if (!headerIcon) {
-                headerIcon = document.querySelector('.app-icon');
-                navBack = document.querySelector('.nav-back');
-                navLogo = document.querySelector('.nav-logo');
-            }
-            
-            // Parallax effect for floating orbs
-            const orbs = document.querySelectorAll('.floating-orb');
-            orbs.forEach((orb, index) => {
-                const speed = 0.2 + (index * 0.1);
-                orb.style.transform = `translateY(${scrolled * speed}px)`;
-            });
-
-            // Show/hide navigation and logo transition
-            if (scrolled > 200) {
-                navBack.classList.add('visible');
-                
-                // Start showing logo when scrolled past the header icon
-                if (scrolled > 400) {
-                    navBack.classList.add('show-logo');
-                } else {
-                    navBack.classList.remove('show-logo');
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
-            } else {
-                navBack.classList.remove('visible');
-                navBack.classList.remove('show-logo');
-            }
+            });
         });
 
-        // Add subtle fade-in effect on scroll
+        // Sophisticated parallax effect
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const orbs = document.querySelectorAll('.floating-orb');
+            
+            orbs.forEach((orb, index) => {
+                const speed = 0.3 + (index * 0.1);
+                const rotation = scrolled * 0.02;
+                orb.style.transform = `translateY(${scrolled * speed}px) rotate(${rotation}deg)`;
+            });
+        });
+
+        // Intersection Observer for fade-in animations
         const observerOptions = {
             threshold: 0.1,
-            rootMargin: '0px 0px -30px 0px'
+            rootMargin: '0px 0px -50px 0px'
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.classList.add('visible');
                 }
             });
         }, observerOptions);
 
-        // Observe h2 elements for fade-in effect
-        document.querySelectorAll('h2').forEach(el => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(20px)';
-            el.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+        document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
+        });
+
+        // Enhanced hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.boxShadow = '0 32px 80px rgba(0, 0, 0, 0.5), 0 8px 32px rgba(252, 61, 79, 0.15)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)';
+            });
         });
     </script>
 </body>
