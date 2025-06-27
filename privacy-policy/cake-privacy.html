@@ -369,7 +369,7 @@
     <div class="nav-back">
         <a href="https://www.bysnapps.com/apps/cake">
             ← 
-            <img src="assets/cakeLogo.png" alt="Cake Logo" class="nav-logo">
+            <img src="/assets/cakeLogo.png" alt="Cake Logo" class="nav-logo" onerror="this.style.display='none';">
             Back to Cake
         </a>
     </div>
@@ -378,7 +378,8 @@
         <!-- Header -->
         <div class="header">
             <div class="app-icon">
-                <img src="assets/cakeLogo.png" alt="Cake App Logo">
+                <img src="/assets/cakeLogo.png" alt="Cake App Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div style="display:none; width:100%; height:100%; background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%); border-radius: 20px; align-items: center; justify-content: center; font-size: 36px;">🎂</div>
             </div>
             <h1>Privacy Policy</h1>
             <p class="last-updated">Last updated: May 2, 2025</p>
