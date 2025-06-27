@@ -41,7 +41,14 @@
             border: 1px solid rgba(255, 255, 255, 0.06);
             border-radius: 12px;
             padding: 12px 20px;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        .nav-back.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .nav-back a {
@@ -52,8 +59,22 @@
             letter-spacing: -0.01em;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 12px;
             transition: color 0.3s ease;
+        }
+
+        .nav-back .nav-logo {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .nav-back.show-logo .nav-logo {
+            opacity: 1;
+            transform: scale(1);
         }
 
         .nav-back:hover {
@@ -75,16 +96,21 @@
         .app-icon {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%);
             border-radius: 20px;
             margin: 0 auto 24px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 36px;
             box-shadow: 
                 0 20px 40px rgba(252, 61, 79, 0.2),
                 0 4px 16px rgba(0, 0, 0, 0.3);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
         }
 
         h1 {
@@ -341,13 +367,19 @@
 
     <!-- Navigation -->
     <div class="nav-back">
-        <a href="/">← Back to Cake</a>
+        <a href="https://www.bysnapps.com/apps/cake">
+            ← 
+            <img src="assets/cakeLogo.png" alt="Cake Logo" class="nav-logo">
+            Back to Cake
+        </a>
     </div>
 
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <div class="app-icon">🎂</div>
+            <div class="app-icon">
+                <img src="assets/cakeLogo.png" alt="Cake App Logo">
+            </div>
             <h1>Privacy Policy</h1>
             <p class="last-updated">Last updated: May 2, 2025</p>
         </div>
@@ -532,15 +564,42 @@
     </div>
 
     <script>
-        // Smooth parallax effect for floating orbs
+        // Enhanced scroll effects with logo transition
+        let headerIcon;
+        let navBack;
+        let navLogo;
+
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
-            const orbs = document.querySelectorAll('.floating-orb');
             
+            // Initialize elements if not already done
+            if (!headerIcon) {
+                headerIcon = document.querySelector('.app-icon');
+                navBack = document.querySelector('.nav-back');
+                navLogo = document.querySelector('.nav-logo');
+            }
+            
+            // Parallax effect for floating orbs
+            const orbs = document.querySelectorAll('.floating-orb');
             orbs.forEach((orb, index) => {
                 const speed = 0.2 + (index * 0.1);
                 orb.style.transform = `translateY(${scrolled * speed}px)`;
             });
+
+            // Show/hide navigation and logo transition
+            if (scrolled > 200) {
+                navBack.classList.add('visible');
+                
+                // Start showing logo when scrolled past the header icon
+                if (scrolled > 400) {
+                    navBack.classList.add('show-logo');
+                } else {
+                    navBack.classList.remove('show-logo');
+                }
+            } else {
+                navBack.classList.remove('visible');
+                navBack.classList.remove('show-logo');
+            }
         });
 
         // Add subtle fade-in effect on scroll
