@@ -31,6 +31,13 @@
             --transition-smooth: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', system-ui, sans-serif;
             background: var(--bg-primary);
@@ -38,10 +45,23 @@
                 radial-gradient(circle at 20% 50%, rgba(252, 61, 79, 0.15) 0%, transparent 50%),
                 radial-gradient(circle at 80% 20%, rgba(252, 61, 79, 0.08) 0%, transparent 50%),
                 radial-gradient(circle at 40% 80%, rgba(252, 61, 79, 0.06) 0%, transparent 50%);
-            min-height: 100vh;
+            background-attachment: fixed;
             overflow-x: hidden;
             color: var(--text-primary);
             position: relative;
+        }
+
+        /* Ensure background covers entire viewport */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            background-attachment: fixed;
+            z-index: -2;
         }
 
         /* === UTILITY CLASSES === */
@@ -69,12 +89,13 @@
 
         /* === FLOATING BACKGROUND === */
         .floating-orb {
-            position: absolute;
+            position: fixed;
             border-radius: 50%;
             background: radial-gradient(circle, rgba(252, 61, 79, 0.1) 0%, transparent 70%);
             filter: blur(1px);
             animation: drift 8s ease-in-out infinite;
             pointer-events: none;
+            z-index: -1;
         }
 
         .orb-1 { width: 200px; height: 200px; top: 15%; left: 5%; animation-delay: 0s; }
@@ -95,14 +116,15 @@
             left: 50%;
             transform: translateX(-50%);
             z-index: 1000;
-            padding: 16px 32px;
+            padding: 12px 24px;
+            border-radius: 50px;
             transition: var(--transition-smooth);
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 40px;
+            gap: 32px;
             align-items: center;
         }
 
@@ -226,7 +248,7 @@
 
         /* === FEATURES SECTION === */
         .features {
-            padding: 140px 24px;
+            padding: 80px 24px 60px;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -235,7 +257,7 @@
             text-align: center;
             font-size: 3.5rem;
             color: var(--text-primary);
-            margin-bottom: 100px;
+            margin-bottom: 60px;
             font-weight: 700;
             letter-spacing: -0.03em;
         }
@@ -244,7 +266,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
             gap: 32px;
-            margin-bottom: 100px;
         }
 
         .feature-card {
@@ -325,15 +346,15 @@
 
         /* === PRIVACY SECTION === */
         .privacy-section {
-            padding: 100px 24px;
+            padding: 60px 24px;
             text-align: center;
             max-width: 900px;
             margin: 0 auto;
         }
 
         .privacy-card {
-            padding: 80px 60px;
-            margin: 40px 0;
+            padding: 60px 48px;
+            margin: 0;
             border-radius: var(--border-radius-xl);
             position: relative;
         }
@@ -404,12 +425,30 @@
 
         /* === CTA SECTION === */
         .cta-section {
-            padding: 140px 24px;
+            padding: 60px 24px 80px;
             text-align: center;
             background: linear-gradient(135deg, 
                 rgba(252, 61, 79, 0.03) 0%,
                 rgba(0, 0, 0, 0.2) 100%);
             border-top: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-card {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 60px 48px;
+            border-radius: var(--border-radius-xl);
+            position: relative;
+        }
+
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, 
+                rgba(252, 61, 79, 0.05) 0%,
+                rgba(255, 255, 255, 0.02) 100%);
+            border-radius: var(--border-radius-xl);
         }
 
         .cta-section h2 {
@@ -418,17 +457,18 @@
             margin-bottom: 32px;
             font-weight: 700;
             letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
         }
 
         .cta-section p {
             font-size: 1.3rem;
             color: var(--text-secondary);
             margin-bottom: 56px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
             line-height: 1.6;
             letter-spacing: -0.01em;
+            position: relative;
+            z-index: 1;
         }
 
         .app-store-badge {
@@ -437,6 +477,8 @@
             height: auto;
             transition: var(--transition);
             filter: brightness(0.9);
+            position: relative;
+            z-index: 1;
         }
 
         .app-store-badge:hover {
@@ -446,7 +488,7 @@
 
         /* === FOOTER === */
         footer {
-            padding: 80px 24px 60px;
+            padding: 60px 24px 40px;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.06);
             background: rgba(0, 0, 0, 0.3);
@@ -488,14 +530,19 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 3rem; }
             .hero p { font-size: 1.1rem; }
-            .features h2 { font-size: 2.5rem; }
+            .features { padding: 60px 24px; }
+            .features h2 { font-size: 2.5rem; margin-bottom: 40px; }
             .features-grid { grid-template-columns: 1fr; gap: 24px; }
             .feature-card { padding: 32px; }
-            .privacy-card { padding: 48px 32px; }
+            .privacy-section { padding: 40px 24px; }
+            .privacy-card { padding: 40px 24px; }
+            .cta-section { padding: 60px 24px; }
+            .cta-card { padding: 40px 24px; }
             .app-icon { width: 120px; height: 120px; }
             nav ul { gap: 24px; }
             .cta-section h2 { font-size: 2.2rem; }
             .footer-links { gap: 20px; }
+            footer { padding: 40px 24px 32px; }
         }
 
         /* === SELECTION STYLING === */
@@ -512,6 +559,13 @@
         /* === SMOOTH SCROLL === */
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Add scroll padding to account for fixed nav */
+        .features,
+        .privacy-section,
+        .cta-section {
+            scroll-margin-top: 100px;
         }
     </style>
 </head>
@@ -600,12 +654,14 @@
 
     <!-- CTA Section -->
     <section class="cta-section" id="download">
-        <h2 class="fade-in">Prevent birthday heartbreak</h2>
-        <p class="fade-in">Cake makes birthday tracking simple, private, and delightful — so you're always prepared, never scrambling, and always celebrating the people who matter.</p>
-        <div class="fade-in">
-            <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
-            </a>
+        <div class="cta-card glass-container fade-in">
+            <h2>Prevent birthday heartbreak</h2>
+            <p>Cake makes birthday tracking simple, private, and delightful — so you're always prepared, never scrambling, and always celebrating the people who matter.</p>
+            <div>
+                <a href="https://apps.apple.com/us/app/cake-birthday-reminders/id6743376594">
+                    <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store" class="app-store-badge">
+                </a>
+            </div>
         </div>
     </section>
 
