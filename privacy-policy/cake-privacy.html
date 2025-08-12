@@ -382,179 +382,136 @@
                 <div style="display:none; width:100%; height:100%; background: linear-gradient(135deg, #FC3D4F 0%, #FF6B7D 100%); border-radius: 20px; align-items: center; justify-content: center; font-size: 36px;">🎂</div>
             </div>
             <h1>Privacy Policy</h1>
-            <p class="last-updated">Last updated: May 2, 2025</p>
+            <p class="last-updated">Last updated: August 11, 2025</p>
         </div>
 
         <!-- Content -->
         <div class="content">
             <h2>Introduction</h2>
-            <p>Thank you for choosing Cake – Birthday Reminders ("the App," "we," "our," or "us"). We are committed to protecting your privacy and providing a secure user experience. This Privacy Policy explains how we collect, use, protect, and handle your information when you use our App.</p>
+            <p>Thank you for choosing Cake – Birthday Reminders. We're committed to protecting your privacy while helping you remember the birthdays that matter most. This Privacy Policy explains how we handle your information when you use our app.</p>
             
             <div class="summary-box">
-                <h3>Summary of Key Points</h3>
+                <h3>The Simple Truth</h3>
                 <ul>
-                    <li><strong>Zero Data Transmission</strong>: The App operates entirely offline and does not transmit your data to any servers.</li>
-                    <li><strong>On-Device Processing</strong>: All contact information is processed locally on your device.</li>
-                    <li><strong>No Third-Party Sharing</strong>: Your data is never shared with third parties.</li>
-                    <li><strong>No Tracking or Analytics</strong>: We do not track your usage or collect analytics.</li>
+                    <li><strong>Everything stays on your device</strong>: Cake works completely offline and never transmits your data anywhere.</li>
+                    <li><strong>No tracking or analytics</strong>: We don't monitor how you use the app or collect usage data.</li>
+                    <li><strong>No third-party sharing</strong>: Your information is never shared with anyone.</li>
+                    <li><strong>You're in control</strong>: You can delete your data anytime or revoke permissions through iOS Settings.</li>
                 </ul>
             </div>
             
-            <h2>1. Information We Collect</h2>
+            <h2>1. What Information We Access</h2>
             
             <h3>1.1 Contact Information</h3>
-            <p>With your explicit permission, the App accesses your device's contact list to extract birthday-related information. This includes:</p>
+            <p>When you grant permission, Cake accesses your contacts to find birthday information. iOS lets you choose to share all contacts or limit the selection. We import whatever you choose to share, including:</p>
             <ul>
-                <li>Names</li>
-                <li>Birthday dates</li>
-                <li>Contact identifiers</li>
-                <li>Optional: associated photos</li>
+                <li>Names and birthday dates</li>
+                <li>Contact photos (if available)</li>
+                <li>Contact identifiers to link back to your address book</li>
             </ul>
             
-            <h3>1.2 User Preferences</h3>
-            <p>We store your preferences for:</p>
+            <h3>1.2 What We Store Locally</h3>
+            <p>All information is stored on your device using Apple's SwiftData framework:</p>
             <ul>
-                <li>Notification settings</li>
-                <li>Display preferences</li>
-                <li>Sorting and filtering options</li>
-                <li>Blacklisted contacts</li>
+                <li>Birthday entries and custom notes</li>
+                <li>Your notification and display preferences</li>
+                <li>Blacklisted contacts (contact ID, name, and photo only - the minimum needed to prevent re-importing)</li>
+                <li>Tags, categories, and sorting preferences</li>
             </ul>
             
-            <h3>1.3 Local Storage</h3>
-            <p>The App stores the following data locally using Apple's SwiftData framework:</p>
-            <ul>
-                <li>Birthday entries</li>
-                <li>Reminder settings</li>
-                <li>Tags and categories</li>
-                <li>Custom notes</li>
-                <li>Local contact identifiers for blacklisted contacts</li>
-            </ul>
-            
-            <p><strong>Important</strong>: All data remains exclusively on your device. The App does not use encryption for stored data beyond what is provided by your device's operating system.</p>
+            <p><strong>Important</strong>: Nothing is encrypted beyond your device's built-in security, and nothing ever leaves your device.</p>
             
             <h2>2. How We Use Your Information</h2>
             
-            <h3>2.1 Contacts Access</h3>
-            <p>We use your contacts data to:</p>
+            <h3>2.1 Core Functionality</h3>
+            <p>We use your contact data to:</p>
             <ul>
-                <li>Display birthday information</li>
-                <li>Create personalized birthday lists</li>
-                <li>Filter and organize birthday entries</li>
+                <li>Display upcoming birthdays in personalized lists</li>
+                <li>Send you local notifications for birthdays you don't want to miss</li>
+                <li>Let you organize and filter your birthday reminders</li>
             </ul>
             
-            <h3>2.2 Reminders Integration</h3>
-            <p>With your permission, we use the Reminders framework to:</p>
+            <h3>2.2 Blacklist Protection</h3>
+            <p>When you blacklist a contact, we store minimal information (ID, name, photo) to ensure they won't be re-imported if you grant access to additional contacts later.</p>
+            
+            <h2>3. Your Control Over Data</h2>
+            
+            <h3>3.1 Permission Management</h3>
+            <p>You control all permissions through iOS Settings:</p>
             <ul>
-                <li>Create birthday reminders</li>
-                <li>Manage reminder preferences</li>
-                <li>Set custom notification schedules</li>
+                <li><strong>Contacts</strong>: Can be granted, limited, or revoked anytime</li>
+                <li><strong>Notifications</strong>: Can be enabled, customized, or disabled</li>
             </ul>
             
-            <h3>2.3 Notifications</h3>
-            <p>When authorized, we use local notifications to:</p>
+            <h3>3.2 When You Revoke Contact Access</h3>
+            <p>If you revoke contacts permission, previously imported birthday data stays in the app. When you tap on someone, you'll see a prompt explaining the broken connection. You can then:</p>
             <ul>
-                <li>Alert you of upcoming birthdays</li>
-                <li>Send custom reminders based on your settings</li>
-                <li>Provide timely birthday information</li>
+                <li>Re-enable contacts to restore the connection</li>
+                <li>Keep the person in Cake but disconnect from contacts</li>
+                <li>Delete them entirely from the app</li>
             </ul>
             
-            <h2>3. Data Protection and Security</h2>
-            
-            <h3>3.1 On-Device Processing</h3>
-            <p>All data processing occurs exclusively on your device. No personal information is transmitted over the internet or stored on external servers.</p>
-            
-            <h3>3.2 No Internet Communication</h3>
-            <p>The App is designed to function completely offline and does not include any networking capabilities. It does not:</p>
+            <h3>3.3 Deleting Your Data</h3>
+            <p>To remove all your data:</p>
             <ul>
-                <li>Connect to any servers</li>
-                <li>Transmit usage data</li>
-                <li>Upload contact information</li>
-                <li>Use cloud services for storage</li>
+                <li>Use the "Clear All Data" function in the app's settings</li>
+                <li>Delete the app entirely, which removes all stored information</li>
             </ul>
             
-            <h3>3.3 Third-Party Libraries</h3>
-            <p>The App incorporates the following types of third-party Swift libraries:</p>
+            <h2>4. Third-Party Components</h2>
+            
+            <h3>4.1 Libraries We Use</h3>
+            <p>Cake includes these carefully selected third-party components that enhance your experience:</p>
             <ul>
-                <li>UI enhancement libraries</li>
-                <li>Utility frameworks</li>
-                <li>Development tools</li>
+                <li><strong>AlertToast</strong>: For friendly notification messages</li>
+                <li><strong>ConfettiSwiftUI</strong>: For birthday celebration animations</li>
+                <li><strong>Lottie</strong>: For smooth, delightful animations</li>
+                <li><strong>PhoneNumberKit</strong>: For proper phone number formatting</li>
             </ul>
             
-            <p>These libraries operate entirely within the App's sandbox and do not collect or transmit user data. We carefully select dependencies that respect user privacy.</p>
+            <p>All libraries operate within the app's secure environment and respect the same privacy principles - no data collection or transmission.</p>
             
-            <h2>4. Your Choices and Rights</h2>
+            <h2>5. In-App Purchases</h2>
             
-            <h3>4.1 Permission Controls</h3>
-            <p>You maintain full control over the App's permissions:</p>
+            <h3>5.1 Cosmetic Features</h3>
+            <p>Cake offers optional cosmetic feature unlocks that enhance your experience:</p>
             <ul>
-                <li>Contacts access can be granted or revoked through your device settings</li>
-                <li>Notification permissions can be adjusted at any time</li>
-                <li>Reminders access is optional and configurable</li>
+                <li>Additional themes and visual customizations</li>
+                <li>Enhanced celebration animations</li>
+                <li>Premium styling options</li>
             </ul>
             
-            <h3>4.2 Data Management</h3>
-            <p>You can manage your data directly within the App:</p>
+            <h3>5.2 Purchase Privacy</h3>
+            <p>For in-app purchases:</p>
             <ul>
-                <li>Delete individual birthday entries</li>
-                <li>Blacklist specific contacts</li>
-                <li>Reset all preferences</li>
-                <li>Clear all stored data</li>
+                <li>All transactions are processed securely through Apple's payment system</li>
+                <li>No payment information is stored within Cake</li>
+                <li>Purchase data doesn't change our offline-only approach</li>
             </ul>
-            
-            <h3>4.3 Data Deletion</h3>
-            <p>To completely remove your data:</p>
-            <ul>
-                <li>Use the in-App "Clear All Data" function (if available)</li>
-                <li>Uninstall the App, which will remove all locally stored information</li>
-            </ul>
-            
-            <p>Note: Blacklisted contact identifiers are retained locally to prevent unwanted re-importing unless explicitly cleared.</p>
-            
-            <h2>5. Future Features</h2>
-            
-            <h3>5.1 In-App Purchases</h3>
-            <p>The current version contains no in-app purchases. If introduced in future updates:</p>
-            <ul>
-                <li>We will provide clear information about available purchases</li>
-                <li>No payment information will be stored within the App</li>
-                <li>Transactions will be processed through Apple's secure payment system</li>
-            </ul>
-            
-            <h3>5.2 App Enhancements</h3>
-            <p>Future versions may include:</p>
-            <ul>
-                <li>Additional customization options</li>
-                <li>Enhanced reminder capabilities</li>
-                <li>Improved user interface</li>
-            </ul>
-            
-            <p>Any feature that changes our privacy practices will be reflected in an updated Privacy Policy.</p>
             
             <h2>6. Children's Privacy</h2>
             
-            <p>The App is not directed at children under the age of 13. Since all data is stored locally on the device and not transmitted anywhere, parents or guardians are responsible for managing app access and potential uninstallation if concerned about their child's use of the App.</p>
+            <p>Cake is not directed at children under 13. Since all data stays on your device, parents and guardians control access by managing the app installation and permissions.</p>
             
             <h2>7. Changes to This Policy</h2>
             
-            <p>We may update this Privacy Policy as we release new features or to reflect changes in legal requirements. We will notify you of any material changes through:</p>
+            <p>We may update this Privacy Policy to reflect new features or legal requirements. You'll be notified of material changes through:</p>
             <ul>
-                <li>In-App notifications (when applicable)</li>
-                <li>Update notes in the App Store</li>
+                <li>App Store update notes</li>
+                <li>In-app notifications when relevant</li>
             </ul>
             
-            <h2>8. No Contact Mechanism</h2>
+            <h2>8. Contact and Support</h2>
             
-            <p>The current version of the App does not include any built-in support or contact features. Since the App operates entirely offline with no data transmission, there is no mechanism or need to contact the developer regarding data-related concerns.</p>
+            <p>Since Cake operates entirely offline with no data transmission, there's typically no need for data-related support. If we add contact mechanisms in future updates, they'll be described in an updated Privacy Policy.</p>
             
-            <p>Future updates may introduce support mechanisms if needed, which would be reflected in an updated Privacy Policy.</p>
+            <h2>9. Legal Compliance</h2>
             
-            <h2>9. California Privacy Rights</h2>
+            <h3>9.1 California Privacy Rights</h3>
+            <p>Under California privacy laws, residents may request information about data sharing for marketing purposes. Since Cake doesn't share any data with third parties, these provisions don't apply.</p>
             
-            <p>Under California Civil Code Section 1798.83, California residents may request certain information regarding disclosure of personal information to third parties for direct marketing purposes. Since we do not share your information with third parties for marketing purposes, these provisions do not apply to our App.</p>
-            
-            <h2>10. International Users</h2>
-            
-            <p>The App is designed to comply with privacy regulations worldwide, including GDPR and CCPA requirements. As the App processes all data locally on your device without any data transfer, most jurisdictional requirements regarding data transfers do not apply.</p>
+            <h3>9.2 International Users</h3>
+            <p>Cake complies with global privacy regulations including GDPR and CCPA. Since all processing happens locally on your device with no data transfers, most cross-border data protection requirements don't apply.</p>
             
             <div class="section-divider"></div>
             
