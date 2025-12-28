@@ -1,0 +1,140 @@
+---
+interface Props {
+  variant?: 'blue' | 'red' | 'green';
+  effect?: 'halo' | 'net' | 'waves' | 'fog';
+}
+
+const { variant = 'blue', effect = 'halo' } = Astro.props;
+
+const colors = {
+  blue: { color: 0x007aff, backgroundColor: 0x0a0a0a },
+  red: { color: 0xfc3d4f, backgroundColor: 0x0a0a0a },
+  green: { color: 0x1db954, backgroundColor: 0x0a0a0a },
+};
+
+const config = colors[variant];
+---
+
+<div id="vanta-bg" class="fixed inset-0 -z-10" data-variant={variant} data-effect={effect} style={(effect === 'halo' || effect === 'fog') ? 'opacity: 0.5;' : ''}></div>
+{(effect === 'halo' || effect === 'fog') && (
+  <>
+    <div class="vanta-blur fixed inset-0 -z-10" style="backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px);"></div>
+    <div class="vanta-glass fixed inset-0 -z-10" style="background: rgba(255, 255, 255, 0.02); opacity: 0.2;"></div>
+  </>
+)}
+
+<script define:vars={{ config, effect }}>
+  // Store config for client-side use
+  window.__VANTA_CONFIG__ = { config, effect };
+</script>
+
+<script>
+  import * as THREE from 'three';
+
+  // Make THREE available globally for Vanta
+  (window as any).THREE = THREE;
+
+  async function initVanta() {
+    const { config, effect } = (window as any).__VANTA_CONFIG__;
+    const element = document.getElementById('vanta-bg');
+
+    if (!element) return;
+
+    let vantaEffect: any;
+
+    try {
+      if (effect === 'halo') {
+        const HALO = (await import('vanta/dist/vanta.halo.min')).default;
+        vantaEffect = HALO({
+          el: element,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          baseColor: 0x0066ff,      // Deep blue (dominant)
+          backgroundColor: 0x0a0a0a,
+          amplitudeFactor: 2.0,
+          xOffset: 0.0,
+          yOffset: 0.0,
+          size: 1.5,
+        });
+      } else if (effect === 'net') {
+        const NET = (await import('vanta/dist/vanta.net.min')).default;
+        vantaEffect = NET({
+          el: element,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: config.color,
+          backgroundColor: config.backgroundColor,
+          points: 10,
+          maxDistance: 20,
+          spacing: 16,
+          showDots: true,
+        });
+      } else if (effect === 'waves') {
+        const WAVES = (await import('vanta/dist/vanta.waves.min')).default;
+        vantaEffect = WAVES({
+          el: element,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: config.color,
+          shininess: 50,
+          waveHeight: 20,
+          waveSpeed: 0.65,
+          zoom: 0.75,
+        });
+      } else if (effect === 'fog') {
+        const FOG = (await import('vanta/dist/vanta.fog.min')).default;
+        vantaEffect = FOG({
+          el: element,
+          THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          highlightColor: config.color,
+          midtoneColor: config.backgroundColor,
+          lowlightColor: 0x000000,
+          baseColor: config.backgroundColor,
+          blurFactor: 0.5,
+          speed: 1.5,
+          zoom: 1.2,
+        });
+      }
+
+      // Store for cleanup
+      (window as any).__VANTA_EFFECT__ = vantaEffect;
+    } catch (error) {
+      console.warn('Vanta.js failed to load, falling back to CSS background');
+    }
+  }
+
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVanta);
+  } else {
+    initVanta();
+  }
+
+  // Cleanup on page navigation (Astro view transitions)
+  document.addEventListener('astro:before-swap', () => {
+    if ((window as any).__VANTA_EFFECT__) {
+      (window as any).__VANTA_EFFECT__.destroy();
+    }
+  });
+</script>

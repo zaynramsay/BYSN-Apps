@@ -1,0 +1,23 @@
+---
+interface Props {
+  variant?: 'blue' | 'red';
+}
+
+const { variant = 'blue' } = Astro.props;
+---
+
+{
+  variant === 'blue' ? (
+    <>
+      <div class="floating-orb orb-blue-1" />
+      <div class="floating-orb orb-blue-2" />
+      <div class="floating-orb orb-blue-3" />
+    </>
+  ) : (
+    <>
+      <div class="floating-orb orb-red-1" />
+      <div class="floating-orb orb-red-2" />
+      <div class="floating-orb orb-red-3" />
+    </>
+  )
+}

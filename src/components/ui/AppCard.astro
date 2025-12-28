@@ -1,0 +1,56 @@
+---
+interface Props {
+  href: string;
+  name: string;
+  tagline: string;
+  description: string;
+  features: string[];
+  iconColor?: string;
+}
+
+const { href, name, tagline, description, features, iconColor = '#FC3D4F' } = Astro.props;
+---
+
+<a href={href} class="app-card glass-container p-12 transition-all duration-500 relative overflow-hidden rounded-lg block group">
+  <!-- Hover gradient overlay -->
+  <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-white/[0.02] via-primary-blue/[0.015] to-white/[0.005]" />
+
+  <!-- Header -->
+  <div class="flex items-center gap-6 mb-8">
+    <div
+      class="app-icon w-[88px] h-[88px] rounded-[22px] flex-shrink-0 relative z-10 shadow-primary flex items-center justify-center"
+      style={`background: linear-gradient(135deg, ${iconColor} 0%, ${iconColor}99 100%);`}
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 text-white">
+        <path d="M12 2C13.1 2 14 2.9 14 4C14 5.1 13.1 6 12 6C10.9 6 10 5.1 10 4C10 2.9 10.9 2 12 2ZM21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9C3 7.9 3.9 7 5 7H19C20.1 7 21 7.9 21 9ZM7 19H17V16H7V19Z" />
+      </svg>
+    </div>
+    <div class="app-info">
+      <h3 class="text-[1.9rem] text-text-primary font-semibold tracking-tight mb-2 relative z-10">
+        {name}
+      </h3>
+      <p class="text-text-tertiary text-base tracking-tight font-medium relative z-10">
+        {tagline}
+      </p>
+    </div>
+  </div>
+
+  <!-- Description -->
+  <p class="text-text-secondary leading-relaxed text-base tracking-tight mb-8 relative z-10">
+    {description}
+  </p>
+
+  <!-- Features -->
+  <div class="flex flex-wrap gap-2.5 relative z-10">
+    {features.map((feature) => <span class="feature-tag">{feature}</span>)}
+  </div>
+</a>
+
+<style>
+  .app-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+      0 32px 80px rgba(0, 0, 0, 0.6),
+      0 8px 32px rgba(0, 122, 255, 0.08);
+  }
+</style>

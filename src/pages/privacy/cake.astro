@@ -1,0 +1,302 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import AppIcon from '@/components/ui/AppIcon.astro';
+import VantaBackground from '@/components/ui/VantaBackground.astro';
+import { APPS, SITE, NAV_LINKS } from '@/lib/constants';
+---
+
+<BaseLayout
+  title={`Privacy Policy - ${APPS.cake.name} – ${APPS.cake.tagline}`}
+  description="Privacy policy for Cake - Birthday Reminders app. 100% on-device processing, no tracking, no data collection."
+  variant="privacy"
+>
+  <!-- Noise texture overlay -->
+  <div class="noise-overlay"></div>
+
+  <VantaBackground variant="red" effect="fog" />
+
+  <Header links={NAV_LINKS.privacy} variant="red" />
+
+  <div class="container max-w-[900px] mx-auto px-6 py-16">
+    <!-- Page Header -->
+    <div class="page-header text-center mb-16 pt-24">
+      <div class="scroll-scale">
+        <AppIcon
+          src="/assets/cakeLogo.png"
+          alt="Cake App Logo"
+          size="lg"
+          variant="red"
+          class="mx-auto mb-6 pulse-ring text-cake-red"
+        />
+      </div>
+      <h1 class="text-[3.5rem] font-bold mb-4 tracking-tighter text-white">
+        Privacy Policy
+      </h1>
+      <p class="text-text-muted text-base italic tracking-tight">Last updated: August 11, 2025</p>
+    </div>
+
+    <!-- Content -->
+    <div class="content glass-premium p-16">
+      <h2>Introduction</h2>
+      <p>
+        Thank you for choosing Cake – Birthday Reminders. We're committed to protecting your privacy while helping you remember the birthdays that matter most. This Privacy Policy explains how we handle your information when you use our app.
+      </p>
+
+      <div class="summary-box">
+        <h3>The Simple Truth</h3>
+        <ul>
+          <li><strong>Everything stays on your device</strong>: Cake works completely offline and never transmits your data anywhere.</li>
+          <li><strong>No tracking or analytics</strong>: We don't monitor how you use the app or collect usage data.</li>
+          <li><strong>No third-party sharing</strong>: Your information is never shared with anyone.</li>
+          <li><strong>You're in control</strong>: You can delete your data anytime or revoke permissions through iOS Settings.</li>
+        </ul>
+      </div>
+
+      <h2>1. What Information We Access</h2>
+
+      <h3>1.1 Contact Information</h3>
+      <p>When you grant permission, Cake accesses your contacts to find birthday information. iOS lets you choose to share all contacts or limit the selection. We import whatever you choose to share, including:</p>
+      <ul>
+        <li>Names and birthday dates</li>
+        <li>Contact photos (if available)</li>
+        <li>Contact identifiers to link back to your address book</li>
+      </ul>
+
+      <h3>1.2 What We Store Locally</h3>
+      <p>All information is stored on your device using Apple's SwiftData framework:</p>
+      <ul>
+        <li>Birthday entries and custom notes</li>
+        <li>Your notification and display preferences</li>
+        <li>Blacklisted contacts (contact ID, name, and photo only - the minimum needed to prevent re-importing)</li>
+        <li>Tags, categories, and sorting preferences</li>
+      </ul>
+      <p><strong>Important</strong>: Nothing is encrypted beyond your device's built-in security, and nothing ever leaves your device.</p>
+
+      <h2>2. How We Use Your Information</h2>
+
+      <h3>2.1 Core Functionality</h3>
+      <p>We use your contact data to:</p>
+      <ul>
+        <li>Display upcoming birthdays in personalized lists</li>
+        <li>Send you local notifications for birthdays you don't want to miss</li>
+        <li>Let you organize and filter your birthday reminders</li>
+      </ul>
+
+      <h3>2.2 Blacklist Protection</h3>
+      <p>When you blacklist a contact, we store minimal information (ID, name, photo) to ensure they won't be re-imported if you grant access to additional contacts later.</p>
+
+      <h2>3. Your Control Over Data</h2>
+
+      <h3>3.1 Permission Management</h3>
+      <p>You control all permissions through iOS Settings:</p>
+      <ul>
+        <li><strong>Contacts</strong>: Can be granted, limited, or revoked anytime</li>
+        <li><strong>Notifications</strong>: Can be enabled, customized, or disabled</li>
+      </ul>
+
+      <h3>3.2 When You Revoke Contact Access</h3>
+      <p>If you revoke contacts permission, previously imported birthday data stays in the app. When you tap on someone, you'll see a prompt explaining the broken connection. You can then:</p>
+      <ul>
+        <li>Re-enable contacts to restore the connection</li>
+        <li>Keep the person in Cake but disconnect from contacts</li>
+        <li>Delete them entirely from the app</li>
+      </ul>
+
+      <h3>3.3 Deleting Your Data</h3>
+      <p>To remove all your data:</p>
+      <ul>
+        <li>Use the "Clear All Data" function in the app's settings</li>
+        <li>Delete the app entirely, which removes all stored information</li>
+      </ul>
+
+      <h2>4. Third-Party Components</h2>
+
+      <h3>4.1 Libraries We Use</h3>
+      <p>Cake includes these carefully selected third-party components that enhance your experience:</p>
+      <ul>
+        <li><strong>AlertToast</strong>: For friendly notification messages</li>
+        <li><strong>ConfettiSwiftUI</strong>: For birthday celebration animations</li>
+        <li><strong>Lottie</strong>: For smooth, delightful animations</li>
+        <li><strong>PhoneNumberKit</strong>: For proper phone number formatting</li>
+      </ul>
+      <p>All libraries operate within the app's secure environment and respect the same privacy principles - no data collection or transmission.</p>
+
+      <h2>5. In-App Purchases</h2>
+
+      <h3>5.1 Cosmetic Features</h3>
+      <p>Cake offers optional cosmetic feature unlocks that enhance your experience:</p>
+      <ul>
+        <li>Additional themes and visual customizations</li>
+        <li>Enhanced celebration animations</li>
+        <li>Premium styling options</li>
+      </ul>
+
+      <h3>5.2 Purchase Privacy</h3>
+      <p>For in-app purchases:</p>
+      <ul>
+        <li>All transactions are processed securely through Apple's payment system</li>
+        <li>No payment information is stored within Cake</li>
+        <li>Purchase data doesn't change our offline-only approach</li>
+      </ul>
+
+      <h2>6. Children's Privacy</h2>
+      <p>Cake is not directed at children under 13. Since all data stays on your device, parents and guardians control access by managing the app installation and permissions.</p>
+
+      <h2>7. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy to reflect new features or legal requirements. You'll be notified of material changes through:</p>
+      <ul>
+        <li>App Store update notes</li>
+        <li>In-app notifications when relevant</li>
+      </ul>
+
+      <h2>8. Contact and Support</h2>
+      <p>Since Cake operates entirely offline with no data transmission, there's typically no need for data-related support. If we add contact mechanisms in future updates, they'll be described in an updated Privacy Policy.</p>
+
+      <h2>9. Legal Compliance</h2>
+
+      <h3>9.1 California Privacy Rights</h3>
+      <p>Under California privacy laws, residents may request information about data sharing for marketing purposes. Since Cake doesn't share any data with third parties, these provisions don't apply.</p>
+
+      <h3>9.2 International Users</h3>
+      <p>Cake complies with global privacy regulations including GDPR and CCPA. Since all processing happens locally on your device with no data transfers, most cross-border data protection requirements don't apply.</p>
+
+      <div class="section-divider"></div>
+
+      <div class="footer-note">
+        <p>By using Cake – Birthday Reminders, you agree to the terms outlined in this Privacy Policy.</p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<script>
+  import { initScrollEffects } from '@/lib/scroll-effects';
+  import { initAllPremiumEffects } from '@/lib/premium-effects';
+
+  // Initialize effects
+  initScrollEffects({
+    fadeElements: '.scroll-fade',
+    scaleElements: '.scroll-scale',
+  });
+
+  initAllPremiumEffects();
+
+  // Fade-in effect for h2 elements
+  const observerOptions: IntersectionObserverInit = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -30px 0px',
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        (entry.target as HTMLElement).style.opacity = '1';
+        (entry.target as HTMLElement).style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.content h2').forEach((el) => {
+    (el as HTMLElement).style.opacity = '0';
+    (el as HTMLElement).style.transform = 'translateY(20px)';
+    (el as HTMLElement).style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  .content h2 {
+    @apply text-[2rem] text-white font-semibold tracking-tight relative pb-3 mt-12 mb-6;
+  }
+
+  .content h2:first-child {
+    @apply mt-0;
+  }
+
+  .content h2::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-16 h-0.5 rounded-sm;
+    background: linear-gradient(90deg, #fc3d4f, rgba(252, 61, 79, 0.3));
+  }
+
+  .content h3 {
+    @apply text-[1.4rem] text-white/90 font-semibold tracking-tight mt-8 mb-4;
+  }
+
+  .content p {
+    @apply text-white/70 mb-5 text-base tracking-tight leading-relaxed;
+  }
+
+  .content ul {
+    @apply my-4 mb-6 pl-0 list-none;
+  }
+
+  .content li {
+    @apply text-white/70 mb-3 pl-6 relative text-base tracking-tight;
+  }
+
+  .content li::before {
+    content: '•';
+    @apply absolute left-0 text-cake-red font-bold text-lg;
+  }
+
+  .content strong {
+    @apply text-cake-red font-semibold;
+  }
+
+  .summary-box {
+    @apply rounded-xl p-8 my-8 relative overflow-hidden;
+    background: linear-gradient(135deg, rgba(252, 61, 79, 0.08) 0%, rgba(252, 61, 79, 0.04) 100%);
+    border: 1px solid rgba(252, 61, 79, 0.2);
+  }
+
+  .summary-box::before {
+    content: '';
+    @apply absolute top-0 left-0 right-0 h-0.5;
+    background: linear-gradient(90deg, #fc3d4f, #ff6b7d);
+  }
+
+  .summary-box h3 {
+    @apply text-white mt-0 mb-5 text-[1.3rem];
+  }
+
+  .summary-box li {
+    @apply text-white/80;
+  }
+
+  .section-divider {
+    @apply h-px my-12;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+
+  .footer-note {
+    @apply text-center text-white/50 italic text-[15px] tracking-tight;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      @apply py-10 px-5;
+    }
+
+    .content {
+      @apply p-8 rounded-xl;
+    }
+
+    .content h2 {
+      @apply text-[1.6rem] mt-8 mb-5;
+    }
+
+    .content h3 {
+      @apply text-[1.2rem] mt-6 mb-3;
+    }
+
+    .summary-box {
+      @apply p-6 my-6;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+    }
+  }
+</style>

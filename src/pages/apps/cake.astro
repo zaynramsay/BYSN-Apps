@@ -1,0 +1,253 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Header from '@/components/layout/Header.astro';
+import Footer from '@/components/layout/Footer.astro';
+import VantaBackground from '@/components/ui/VantaBackground.astro';
+import AppIcon from '@/components/ui/AppIcon.astro';
+import AppStoreButton from '@/components/ui/AppStoreButton.astro';
+import { APPS, NAV_LINKS, FOOTER_LINKS, SITE } from '@/lib/constants';
+
+const features = [
+  {
+    icon: '📱',
+    title: 'Beautiful Widgets',
+    description:
+      'Lock & Home Screen widgets with glanceable countdowns. Tap to call, text, or get gift ideas right from your widget.',
+  },
+  {
+    icon: '📝',
+    title: 'Smart Reminders',
+    description:
+      "Customizable reminders that actually work. Get notified 3 days before, day-of, or set your own perfect timing.",
+  },
+  {
+    icon: '👥',
+    title: 'Effortless Sync',
+    description:
+      "Instantly syncs with your iPhone Contacts. Add anyone's birthday — friends, family, pets, or coworkers.",
+  },
+  {
+    icon: '✨',
+    title: 'Meaningful Insights',
+    description:
+      'See how rare each birthday is with real data. Discover "On This Day" history and personality insights.',
+  },
+  {
+    icon: '🏷️',
+    title: 'Smart Organization',
+    description:
+      'Tag close friends, family, or work contacts. Auto-clean stale birthdays and track gift ideas for next year.',
+  },
+  {
+    icon: '🎯',
+    title: 'Quick Actions',
+    description:
+      'Call, text, or set reminders directly from your Lock Screen. Everything you need, right at your fingertips.',
+  },
+];
+---
+
+<BaseLayout
+  title={`${APPS.cake.name} – ${APPS.cake.tagline}`}
+  description={APPS.cake.description}
+  variant="cake"
+>
+  <!-- Noise texture overlay -->
+  <div class="noise-overlay"></div>
+
+  <VantaBackground variant="red" effect="waves" />
+
+  <Header links={NAV_LINKS.cake} variant="red" />
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero hero-parallax min-h-screen flex items-center justify-center text-center relative overflow-hidden">
+      <div class="hero-content max-w-[800px] px-6 z-10">
+        <!-- App Icon with enhanced animation -->
+        <div class="scroll-scale mb-12">
+          <div class="app-icon-wrapper float-enhanced">
+            <AppIcon
+              src="/assets/cakeLogo.png"
+              alt="Cake App Logo"
+              size="lg"
+              variant="red"
+              class="mx-auto pulse-ring text-cake-red"
+            />
+          </div>
+        </div>
+
+        <!-- Title with text reveal -->
+        <h1 class="text-[5.5rem] font-extrabold mb-8 tracking-tighter leading-none">
+          <span class="text-reveal glow-text-red">{APPS.cake.name}</span>
+        </h1>
+
+        <!-- Tagline -->
+        <p class="text-[1.6rem] text-text-secondary mb-14 font-normal leading-relaxed tracking-tight word-reveal">
+          Never miss a birthday again. Celebrate better — without the last-minute panic.
+        </p>
+
+        <!-- App Store Button -->
+        <div class="scroll-fade" style="transition-delay: 0.3s;">
+          <a href={APPS.cake.appStoreUrl} class="inline-block magnetic shimmer">
+            <AppStoreButton href={APPS.cake.appStoreUrl} size="lg" />
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section py-24 px-6 max-w-[1400px] mx-auto scroll-mt-24 section-transition" id="features">
+      <h2 class="text-center text-[4rem] text-text-primary font-bold tracking-tighter mb-16 text-reveal">
+        Everything you need to celebrate
+      </h2>
+
+      <div class="features-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 reveal-group">
+        {
+          features.map((feature, index) => (
+            <div class="reveal-item" style={`transition-delay: ${index * 0.05}s;`}>
+              <div class="feature-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
+                <!-- Icon -->
+                <div class="feature-icon w-16 h-16 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-500"
+                     style="background: rgba(252, 61, 79, 0.1); border: 1px solid rgba(252, 61, 79, 0.2);">
+                  {feature.icon}
+                </div>
+
+                <!-- Content -->
+                <h3 class="text-xl text-text-primary font-semibold tracking-tight mb-3">
+                  {feature.title}
+                </h3>
+                <p class="text-text-tertiary leading-relaxed text-[15px]">
+                  {feature.description}
+                </p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Privacy Section -->
+    <section class="privacy-section py-20 px-6 text-center max-w-[900px] mx-auto scroll-mt-24 section-transition" id="privacy">
+      <div class="privacy-card glass-premium py-16 px-12 rounded-2xl relative">
+        <!-- Gradient accent -->
+        <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r from-cake-red via-cake-red-light to-cake-red" />
+
+        <h3 class="text-[2.8rem] text-text-primary font-bold tracking-tighter mb-8 text-reveal">
+          Built for Privacy
+        </h3>
+        <p class="text-text-secondary text-lg leading-relaxed tracking-tight mb-10 word-reveal">
+          100% on-device processing means your personal data never leaves your iPhone. No accounts, no tracking, no data collection. Your relationships and celebrations stay private, exactly as they should be.
+        </p>
+        <a
+          href="/privacy/cake"
+          class="inline-flex items-center gap-2 text-cake-red font-semibold text-base tracking-tight transition-all duration-300 hover:text-cake-red-light group magnetic"
+        >
+          Read Full Privacy Policy
+          <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section
+      class="cta-section py-20 px-6 text-center bg-gradient-to-b from-transparent via-cake-red/5 to-transparent scroll-mt-24 section-transition"
+      id="download"
+    >
+      <div class="cta-card glass-premium max-w-[700px] mx-auto py-16 px-12 rounded-2xl relative overflow-hidden">
+        <!-- Animated background glow -->
+        <div class="absolute inset-0 opacity-30">
+          <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-cake-red/20 blur-[100px]" />
+        </div>
+
+        <h2 class="text-[3rem] text-text-primary font-bold tracking-tighter mb-8 relative z-10 text-reveal">
+          Prevent birthday heartbreak
+        </h2>
+        <p class="text-lg text-text-secondary mb-12 leading-relaxed tracking-tight relative z-10 word-reveal">
+          Cake makes birthday tracking simple, private, and delightful — so you're always prepared, never scrambling, and always celebrating the people who matter.
+        </p>
+
+        <div class="relative z-10">
+          <a href={APPS.cake.appStoreUrl} class="inline-block magnetic shimmer">
+            <AppStoreButton href={APPS.cake.appStoreUrl} size="sm" />
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer
+    links={FOOTER_LINKS.cake}
+    copyright={`© ${new Date().getFullYear()} ${SITE.name}. Made with care for celebrating life's special moments.`}
+  />
+</BaseLayout>
+
+<script>
+  import { initScrollEffects } from '@/lib/scroll-effects';
+  import { initAllPremiumEffects } from '@/lib/premium-effects';
+
+  // Initialize effects
+  initScrollEffects({
+    fadeElements: '.scroll-fade',
+    scaleElements: '.scroll-scale',
+  });
+
+  initAllPremiumEffects();
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const href = (this as HTMLAnchorElement).getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          });
+        }
+      }
+    });
+  });
+</script>
+
+<style>
+  .feature-card-premium:hover .feature-icon {
+    background: rgba(252, 61, 79, 0.15) !important;
+    border-color: rgba(252, 61, 79, 0.3) !important;
+    box-shadow: 0 8px 30px rgba(252, 61, 79, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 3.5rem;
+    }
+    .hero p {
+      font-size: 1.1rem;
+    }
+    .features-section {
+      padding: 4rem 1.5rem;
+    }
+    .features-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    .feature-card-premium {
+      padding: 1.5rem;
+    }
+    .privacy-card,
+    .cta-card {
+      padding: 2rem 1.5rem;
+    }
+    .cta-section h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
