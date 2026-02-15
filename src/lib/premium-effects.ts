@@ -183,31 +183,6 @@ export function initWordReveal(): void {
 }
 
 /**
- * Gradient Border Animation
- * Rotating gradient border effect
- */
-export function initGradientBorders(): void {
-  const elements = document.querySelectorAll('.gradient-border');
-
-  elements.forEach((el) => {
-    const element = el as HTMLElement;
-    element.style.setProperty('--gradient-angle', '0deg');
-
-    let angle = 0;
-    function rotate() {
-      angle = (angle + 0.5) % 360;
-      element.style.setProperty('--gradient-angle', `${angle}deg`);
-      requestAnimationFrame(rotate);
-    }
-
-    // Only animate on hover for performance
-    element.addEventListener('mouseenter', () => {
-      rotate();
-    });
-  });
-}
-
-/**
  * Shimmer effect for buttons
  */
 export function initShimmer(): void {
@@ -244,51 +219,9 @@ export function initSectionTransitions(): void {
 }
 
 /**
- * Counter animation for numbers
- */
-export function initCounters(): void {
-  const counters = document.querySelectorAll('.counter');
-
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target as HTMLElement;
-          const target = parseInt(el.dataset.target || '0', 10);
-          const duration = 2000;
-          const start = performance.now();
-
-          function update(currentTime: number) {
-            const elapsed = currentTime - start;
-            const progress = Math.min(elapsed / duration, 1);
-
-            // Easing
-            const eased = 1 - Math.pow(1 - progress, 3);
-            const current = Math.floor(eased * target);
-
-            el.textContent = current.toString();
-
-            if (progress < 1) {
-              requestAnimationFrame(update);
-            }
-          }
-
-          requestAnimationFrame(update);
-          observer.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
-
-  counters.forEach((counter) => observer.observe(counter));
-}
-
-/**
  * Initialize all premium effects
  */
 export function initAllPremiumEffects(): void {
-  // Check for reduced motion preference
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   if (!prefersReducedMotion) {
@@ -299,6 +232,5 @@ export function initAllPremiumEffects(): void {
     initWordReveal();
     initShimmer();
     initSectionTransitions();
-    initCounters();
   }
 }

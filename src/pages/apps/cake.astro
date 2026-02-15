@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer.astro';
 import VantaBackground from '@/components/ui/VantaBackground.astro';
 import AppIcon from '@/components/ui/AppIcon.astro';
 import AppStoreButton from '@/components/ui/AppStoreButton.astro';
+import PageEffects from '@/components/PageEffects.astro';
 import { APPS, NAV_LINKS, FOOTER_LINKS, SITE } from '@/lib/constants';
 
 const features = [
@@ -52,18 +53,13 @@ const features = [
   description={APPS.cake.description}
   variant="cake"
 >
-  <!-- Noise texture overlay -->
   <div class="noise-overlay"></div>
-
   <VantaBackground variant="red" effect="waves" />
-
   <Header links={NAV_LINKS.cake} variant="red" />
 
   <main>
-    <!-- Hero Section -->
     <section class="hero hero-parallax min-h-screen flex items-center justify-center text-center relative overflow-hidden">
       <div class="hero-content max-w-[800px] px-6 z-10">
-        <!-- App Icon with enhanced animation -->
         <div class="scroll-scale mb-12">
           <div class="app-icon-wrapper float-enhanced">
             <AppIcon
@@ -76,29 +72,24 @@ const features = [
           </div>
         </div>
 
-        <!-- Title with text reveal -->
-        <h1 class="text-[5.5rem] font-extrabold mb-8 tracking-tighter leading-none">
+        <h1 class="hero-title font-extrabold mb-8 tracking-tighter leading-none">
           <span class="text-reveal glow-text-red">{APPS.cake.name}</span>
         </h1>
 
-        <!-- Tagline -->
-        <p class="text-[1.6rem] text-text-secondary mb-14 font-normal leading-relaxed tracking-tight word-reveal">
+        <p class="hero-tagline text-text-secondary mb-14 font-normal leading-relaxed tracking-tight word-reveal">
           Never miss a birthday again. Celebrate better — without the last-minute panic.
         </p>
 
-        <!-- App Store Button -->
         <div class="scroll-fade" style="transition-delay: 0.3s;">
           <a href={APPS.cake.appStoreUrl} class="inline-block magnetic shimmer">
             <AppStoreButton href={APPS.cake.appStoreUrl} size="lg" />
           </a>
         </div>
       </div>
-
     </section>
 
-    <!-- Features Section -->
     <section class="features-section py-24 px-6 max-w-[1400px] mx-auto scroll-mt-24 section-transition" id="features">
-      <h2 class="text-center text-[4rem] text-text-primary font-bold tracking-tighter mb-16 text-reveal">
+      <h2 class="section-heading text-center text-text-primary font-bold tracking-tighter mb-16 text-reveal">
         Everything you need to celebrate
       </h2>
 
@@ -107,13 +98,10 @@ const features = [
           features.map((feature, index) => (
             <div class="reveal-item" style={`transition-delay: ${index * 0.05}s;`}>
               <div class="feature-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
-                <!-- Icon -->
                 <div class="feature-icon w-16 h-16 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-500"
                      style="background: rgba(252, 61, 79, 0.1); border: 1px solid rgba(252, 61, 79, 0.2);">
                   {feature.icon}
                 </div>
-
-                <!-- Content -->
                 <h3 class="text-xl text-text-primary font-semibold tracking-tight mb-3">
                   {feature.title}
                 </h3>
@@ -127,13 +115,11 @@ const features = [
       </div>
     </section>
 
-    <!-- Privacy Section -->
     <section class="privacy-section py-20 px-6 text-center max-w-[900px] mx-auto scroll-mt-24 section-transition" id="privacy">
       <div class="privacy-card glass-premium py-16 px-12 rounded-2xl relative">
-        <!-- Gradient accent -->
         <div class="absolute top-0 left-0 right-0 h-1 rounded-t-2xl bg-gradient-to-r from-cake-red via-cake-red-light to-cake-red" />
 
-        <h3 class="text-[2.8rem] text-text-primary font-bold tracking-tighter mb-8 text-reveal">
+        <h3 class="section-heading-sm text-text-primary font-bold tracking-tighter mb-8 text-reveal">
           Built for Privacy
         </h3>
         <p class="text-text-secondary text-lg leading-relaxed tracking-tight mb-10 word-reveal">
@@ -151,18 +137,16 @@ const features = [
       </div>
     </section>
 
-    <!-- CTA Section -->
     <section
       class="cta-section py-20 px-6 text-center bg-gradient-to-b from-transparent via-cake-red/5 to-transparent scroll-mt-24 section-transition"
       id="download"
     >
       <div class="cta-card glass-premium max-w-[700px] mx-auto py-16 px-12 rounded-2xl relative overflow-hidden">
-        <!-- Animated background glow -->
         <div class="absolute inset-0 opacity-30">
           <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full bg-cake-red/20 blur-[100px]" />
         </div>
 
-        <h2 class="text-[3rem] text-text-primary font-bold tracking-tighter mb-8 relative z-10 text-reveal">
+        <h2 class="section-heading-sm text-text-primary font-bold tracking-tighter mb-8 relative z-10 text-reveal">
           Prevent birthday heartbreak
         </h2>
         <p class="text-lg text-text-secondary mb-12 leading-relaxed tracking-tight relative z-10 word-reveal">
@@ -182,37 +166,8 @@ const features = [
     links={FOOTER_LINKS.cake}
     copyright={`© ${new Date().getFullYear()} ${SITE.name}. Made with care for celebrating life's special moments.`}
   />
+  <PageEffects />
 </BaseLayout>
-
-<script>
-  import { initScrollEffects } from '@/lib/scroll-effects';
-  import { initAllPremiumEffects } from '@/lib/premium-effects';
-
-  // Initialize effects
-  initScrollEffects({
-    fadeElements: '.scroll-fade',
-    scaleElements: '.scroll-scale',
-  });
-
-  initAllPremiumEffects();
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const href = (this as HTMLAnchorElement).getAttribute('href');
-      if (href) {
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }
-      }
-    });
-  });
-</script>
 
 <style>
   .feature-card-premium:hover .feature-icon {
@@ -221,18 +176,27 @@ const features = [
     box-shadow: 0 8px 30px rgba(252, 61, 79, 0.2);
   }
 
+  .hero-title {
+    font-size: clamp(3rem, 9vw, 5.5rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+  }
+
+  .section-heading {
+    font-size: clamp(2rem, 5vw, 4rem);
+  }
+
+  .section-heading-sm {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+  }
+
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 3.5rem;
-    }
-    .hero p {
-      font-size: 1.1rem;
-    }
     .features-section {
       padding: 4rem 1.5rem;
     }
     .features-section h2 {
-      font-size: 2.5rem;
       margin-bottom: 2.5rem;
     }
     .features-grid {
@@ -245,9 +209,6 @@ const features = [
     .privacy-card,
     .cta-card {
       padding: 2rem 1.5rem;
-    }
-    .cta-section h2 {
-      font-size: 2rem;
     }
   }
 </style>

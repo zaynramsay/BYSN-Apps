@@ -4,10 +4,10 @@ import { APPS } from '@/lib/constants';
 
 <section class="apps-section py-24 px-6 max-w-[1400px] mx-auto" id="apps">
   <div class="text-center mb-16">
-    <h2 class="text-[4rem] text-text-primary font-bold tracking-tighter mb-6 text-reveal">
+    <h2 class="apps-heading text-text-primary font-bold tracking-tighter mb-6 text-reveal">
       Our Apps
     </h2>
-    <p class="text-[1.3rem] text-text-tertiary max-w-[600px] mx-auto leading-relaxed word-reveal">
+    <p class="apps-subheading text-text-tertiary max-w-[600px] mx-auto leading-relaxed word-reveal">
       Each app represents our commitment to premium design and thoughtful functionality.
     </p>
   </div>
@@ -151,10 +151,15 @@ import { APPS } from '@/lib/constants';
     }
   }
 
+  .apps-heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+
+  .apps-subheading {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+  }
+
   @media (max-width: 768px) {
-    .apps-section h2 {
-      font-size: 2.5rem;
-    }
     .apps-grid {
       gap: 1.5rem;
     }

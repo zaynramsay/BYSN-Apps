@@ -221,17 +221,17 @@ function initNavbarTransition(): void {
 }
 
 /**
- * Smooth scroll to section
+ * Smooth scroll for all anchor links on the page
  */
-export function smoothScrollTo(target: string | HTMLElement, offset = 0): void {
-  const element = typeof target === 'string' ? document.querySelector(target) : target;
-
-  if (!element) return;
-
-  const targetPosition = element.getBoundingClientRect().top + window.pageYOffset - offset;
-
-  window.scrollTo({
-    top: targetPosition,
-    behavior: 'smooth',
+export function initSmoothScroll(): void {
+  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+      const href = (anchor as HTMLAnchorElement).getAttribute('href');
+      if (href) {
+        const target = document.querySelector(href);
+        target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
 }

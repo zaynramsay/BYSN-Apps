@@ -1,0 +1,51 @@
+---
+import type { ContentBlock } from '@/data/privacy-cake';
+
+interface Props {
+  block: ContentBlock;
+}
+
+const { block } = Astro.props;
+---
+
+{block.type === 'text' && (
+  <p set:html={block.bold ? `<strong>${block.content}</strong>` : block.content} />
+)}
+
+{block.type === 'list' && block.ordered && (
+  <ol>{block.items.map((i) => <li set:html={i} />)}</ol>
+)}
+
+{block.type === 'list' && !block.ordered && (
+  <ul>{block.items.map((i) => <li set:html={i} />)}</ul>
+)}
+
+{block.type === 'named-list' && (
+  <ul>{block.items.map((i) => <li><strong>{i.name}:</strong> <span set:html={` ${i.detail}`} /></li>)}</ul>
+)}
+
+{block.type === 'callout' && (
+  <div class="summary-box">
+    <h3>{block.title}</h3>
+    <ul>{block.items.map((i) => <li set:html={i} />)}</ul>
+  </div>
+)}
+
+{block.type === 'table' && (
+  <div class="table-scroll">
+    <table class={block.className}>
+      <thead><tr>{block.headers.map((h) => <th>{h}</th>)}</tr></thead>
+      <tbody>{block.rows.map((row) => (
+        <tr>{row.map((cell) => {
+          const text = typeof cell === 'string' ? cell : cell.text;
+          const bold = typeof cell === 'object' && cell.bold;
+          return bold ? <td><strong set:html={text} /></td> : <td set:html={text} />;
+        })}</tr>
+      ))}</tbody>
+    </table>
+  </div>
+)}
+
+{block.type === 'divider' && (
+  <div class="section-divider" />
+)}

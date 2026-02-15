@@ -5,10 +5,10 @@
 <section class="about-section py-24 px-6 max-w-[1100px] mx-auto section-transition" id="about">
   <!-- Section Header -->
   <div class="text-center mb-16">
-    <h2 class="text-[4rem] text-text-primary font-bold tracking-tighter mb-6 text-reveal">
+    <h2 class="about-heading text-text-primary font-bold tracking-tighter mb-6 text-reveal">
       About BYSN Apps
     </h2>
-    <p class="text-[1.3rem] text-text-tertiary max-w-[600px] mx-auto leading-relaxed word-reveal">
+    <p class="about-subheading text-text-tertiary max-w-[600px] mx-auto leading-relaxed word-reveal">
       Solo developer from Boston on a mission to make everyday tools feel alive.
     </p>
   </div>
@@ -95,15 +95,15 @@
     box-shadow: 0 8px 30px rgba(0, 122, 255, 0.2);
   }
 
+  .about-heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+
+  .about-subheading {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+  }
+
   @media (max-width: 768px) {
-    .about-section h2 {
-      font-size: 2.5rem;
-    }
-
-    .about-section > p {
-      font-size: 1.1rem;
-    }
-
     .grid {
       grid-template-columns: 1fr;
       gap: 1rem;

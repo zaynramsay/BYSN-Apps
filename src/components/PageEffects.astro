@@ -1,0 +1,18 @@
+---
+/**
+ * Shared page effects initializer.
+ * Drop into any page to wire up scroll effects, premium effects, and smooth scrolling.
+ */
+---
+
+<script>
+  import { initScrollEffects, initSmoothScroll } from '@/lib/scroll-effects';
+  import { initAllPremiumEffects } from '@/lib/premium-effects';
+
+  initScrollEffects({
+    fadeElements: '.scroll-fade',
+    scaleElements: '.scroll-scale',
+  });
+  initAllPremiumEffects();
+  initSmoothScroll();
+</script>

@@ -1,8 +1,8 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
+import ContentBlock from '@/components/ContentBlock.astro';
 import { APPS } from '@/lib/constants';
 import { policyData } from '@/data/privacy-cake';
-import type { ContentBlock } from '@/data/privacy-cake';
 
 const { meta, sections, footer, navGroups } = policyData;
 
@@ -62,81 +62,27 @@ const navGroupsResolved = navGroups.map((g) => ({
             <>
               <h2 id={section.id}>{section.title}</h2>
 
-              {/* Section-level content that appears BEFORE subsections */}
               {section.content && section.subsections
-                ? section.content.filter((b) => b.type !== 'divider').map((block) => {
-                    if (block.type === 'text') return <p set:html={block.bold ? `<strong>${block.content}</strong>` : block.content} />;
-                    if (block.type === 'list') return block.ordered
-                      ? <ol>{block.items.map((i) => <li set:html={i} />)}</ol>
-                      : <ul>{block.items.map((i) => <li set:html={i} />)}</ul>;
-                    if (block.type === 'named-list') return <ul>{block.items.map((i) => <li><strong>{i.name}:</strong> <span set:html={` ${i.detail}`} /></li>)}</ul>;
-                    if (block.type === 'callout') return <div class="summary-box"><h3>{block.title}</h3><ul>{block.items.map((i) => <li set:html={i} />)}</ul></div>;
-                    if (block.type === 'table') return (
-                      <table class={block.className}>
-                        <thead><tr>{block.headers.map((h) => <th>{h}</th>)}</tr></thead>
-                        <tbody>{block.rows.map((row) => <tr>{row.map((cell) => {
-                          const text = typeof cell === 'string' ? cell : cell.text;
-                          const bold = typeof cell === 'object' && cell.bold;
-                          return bold ? <td><strong set:html={text} /></td> : <td set:html={text} />;
-                        })}</tr>)}</tbody>
-                      </table>
-                    );
-                    return null;
-                  })
+                ? section.content.filter((b) => b.type !== 'divider').map((block) => (
+                    <ContentBlock block={block} />
+                  ))
                 : null}
 
-              {/* Subsections */}
               {section.subsections?.map((sub) => (
                 <>
                   <h3>{sub.title}</h3>
-                  {sub.content.map((block) => {
-                    if (block.type === 'text') return <p set:html={block.bold ? `<strong>${block.content}</strong>` : block.content} />;
-                    if (block.type === 'list') return block.ordered
-                      ? <ol>{block.items.map((i) => <li set:html={i} />)}</ol>
-                      : <ul>{block.items.map((i) => <li set:html={i} />)}</ul>;
-                    if (block.type === 'named-list') return <ul>{block.items.map((i) => <li><strong>{i.name}:</strong> <span set:html={` ${i.detail}`} /></li>)}</ul>;
-                    if (block.type === 'callout') return <div class="summary-box"><h3>{block.title}</h3><ul>{block.items.map((i) => <li set:html={i} />)}</ul></div>;
-                    if (block.type === 'table') return (
-                      <table class={block.className}>
-                        <thead><tr>{block.headers.map((h) => <th>{h}</th>)}</tr></thead>
-                        <tbody>{block.rows.map((row) => <tr>{row.map((cell) => {
-                          const text = typeof cell === 'string' ? cell : cell.text;
-                          const bold = typeof cell === 'object' && cell.bold;
-                          return bold ? <td><strong set:html={text} /></td> : <td set:html={text} />;
-                        })}</tr>)}</tbody>
-                      </table>
-                    );
-                    if (block.type === 'divider') return <div class="section-divider" />;
-                    return null;
-                  })}
+                  {sub.content.map((block) => (
+                    <ContentBlock block={block} />
+                  ))}
                 </>
               ))}
 
-              {/* Section-level content without subsections, OR trailing dividers */}
               {section.content && !section.subsections
-                ? section.content.map((block) => {
-                    if (block.type === 'text') return <p set:html={block.bold ? `<strong>${block.content}</strong>` : block.content} />;
-                    if (block.type === 'list') return block.ordered
-                      ? <ol>{block.items.map((i) => <li set:html={i} />)}</ol>
-                      : <ul>{block.items.map((i) => <li set:html={i} />)}</ul>;
-                    if (block.type === 'named-list') return <ul>{block.items.map((i) => <li><strong>{i.name}:</strong> <span set:html={` ${i.detail}`} /></li>)}</ul>;
-                    if (block.type === 'callout') return <div class="summary-box"><h3>{block.title}</h3><ul>{block.items.map((i) => <li set:html={i} />)}</ul></div>;
-                    if (block.type === 'table') return (
-                      <table class={block.className}>
-                        <thead><tr>{block.headers.map((h) => <th>{h}</th>)}</tr></thead>
-                        <tbody>{block.rows.map((row) => <tr>{row.map((cell) => {
-                          const text = typeof cell === 'string' ? cell : cell.text;
-                          const bold = typeof cell === 'object' && cell.bold;
-                          return bold ? <td><strong set:html={text} /></td> : <td set:html={text} />;
-                        })}</tr>)}</tbody>
-                      </table>
-                    );
-                    if (block.type === 'divider') return <div class="section-divider" />;
-                    return null;
-                  })
+                ? section.content.map((block) => (
+                    <ContentBlock block={block} />
+                  ))
                 : null}
 
-              {/* Trailing divider for sections with subsections */}
               {section.content && section.subsections
                 ? section.content.filter((b) => b.type === 'divider').map(() => <div class="section-divider" />)
                 : null}
@@ -163,9 +109,7 @@ const navGroupsResolved = navGroups.map((g) => ({
     .map((link) => {
       const id = link.getAttribute('data-section-link');
       const section = id ? document.getElementById(id) : null;
-      if (!id || !section) {
-        return null;
-      }
+      if (!id || !section) return null;
       return { id, section };
     })
     .filter(Boolean);
@@ -197,15 +141,11 @@ const navGroupsResolved = navGroups.map((g) => ({
   links.forEach((link) => {
     link.addEventListener('click', () => {
       const id = link.getAttribute('data-section-link');
-      if (id) {
-        setActive(id);
-      }
+      if (id) setActive(id);
     });
   });
 
-  if (trackedSections[0]) {
-    setActive(trackedSections[0].id);
-  }
+  if (trackedSections[0]) setActive(trackedSections[0].id);
 </script>
 
 <style>
@@ -281,7 +221,7 @@ const navGroupsResolved = navGroups.map((g) => ({
     font-size: 0.93rem;
     font-weight: 560;
     text-decoration: none;
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    transition: background 0.2s ease, color 0.2s ease;
   }
 
   .nav-item svg {
@@ -433,11 +373,16 @@ const navGroupsResolved = navGroups.map((g) => ({
     margin-top: 0;
   }
 
+  .table-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 1.3rem 0;
+  }
+
   .permissions-table,
   .summary-table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1.3rem 0;
     border-radius: 14px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -452,6 +397,7 @@ const navGroupsResolved = navGroups.map((g) => ({
     padding: 0.78rem 0.85rem;
     font-size: 0.84rem;
     letter-spacing: 0.02em;
+    white-space: nowrap;
   }
 
   .permissions-table td,
@@ -515,13 +461,6 @@ const navGroupsResolved = navGroups.map((g) => ({
 
     .nav-list {
       grid-template-columns: 1fr;
-    }
-
-    .permissions-table,
-    .summary-table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
     }
   }
 </style>

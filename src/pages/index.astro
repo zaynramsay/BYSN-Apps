@@ -5,21 +5,18 @@ import Footer from '@/components/layout/Footer.astro';
 import VantaBackground from '@/components/ui/VantaBackground.astro';
 import AppsSection from '@/components/sections/AppsSection.astro';
 import AboutSection from '@/components/sections/AboutSection.astro';
+import PageEffects from '@/components/PageEffects.astro';
 import { SITE, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants';
 ---
 
 <BaseLayout title={`${SITE.name} - ${SITE.tagline}`} variant="main">
-  <!-- Noise texture overlay for premium feel -->
   <div class="noise-overlay"></div>
-
   <VantaBackground variant="blue" effect="halo" />
   <Header links={NAV_LINKS.home} variant="blue" />
 
   <main>
-    <!-- Hero Section with Premium Effects -->
     <section class="hero hero-parallax min-h-screen flex items-center justify-center text-center relative overflow-hidden">
       <div class="hero-content max-w-[900px] px-6 pt-16 z-10">
-        <!-- Animated Brand Mark -->
         <div class="scroll-scale mb-12">
           <div class="brand-mark-premium w-[140px] h-[140px] mx-auto float-enhanced">
             <div class="brand-icon w-full h-full bg-gradient-to-br from-primary-blue to-secondary-purple rounded-[32px] flex items-center justify-center shadow-blue-glow pulse-ring text-primary-blue">
@@ -30,22 +27,18 @@ import { SITE, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants';
           </div>
         </div>
 
-        <!-- Animated Title -->
-        <h1 class="text-[5rem] font-extrabold mb-6 tracking-tighter leading-none">
+        <h1 class="hero-title font-extrabold mb-6 tracking-tighter leading-none">
           <span class="text-reveal animated-gradient-text">{SITE.name}</span>
         </h1>
 
-        <!-- Tagline with word reveal -->
-        <p class="text-[2rem] text-text-secondary mb-4 font-normal leading-relaxed tracking-tight word-reveal">
+        <p class="hero-tagline text-text-secondary mb-4 font-normal leading-relaxed tracking-tight word-reveal">
           {SITE.tagline}
         </p>
 
-        <!-- Subtitle -->
-        <p class="text-[1.2rem] text-text-tertiary mb-14 font-normal leading-relaxed tracking-tight max-w-[700px] mx-auto scroll-fade" style="transition-delay: 0.3s;">
+        <p class="hero-subtitle text-text-tertiary mb-14 font-normal leading-relaxed tracking-tight max-w-[700px] mx-auto scroll-fade" style="transition-delay: 0.3s;">
           {SITE.description}
         </p>
 
-        <!-- Premium CTA Button -->
         <div class="scroll-fade" style="transition-delay: 0.4s;">
           <a href="#apps" class="btn-premium magnetic shimmer">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -55,69 +48,39 @@ import { SITE, NAV_LINKS, FOOTER_LINKS } from '@/lib/constants';
           </a>
         </div>
       </div>
-
     </section>
 
-    <!-- Apps Section -->
     <div class="section-transition">
       <AppsSection />
     </div>
 
-    <!-- About Section -->
     <div class="section-transition">
       <AboutSection />
     </div>
   </main>
 
   <Footer links={FOOTER_LINKS.home} />
+  <PageEffects />
 </BaseLayout>
 
-<script>
-  import { initScrollEffects } from '@/lib/scroll-effects';
-  import { initAllPremiumEffects } from '@/lib/premium-effects';
-
-  // Initialize all effects
-  initScrollEffects({
-    fadeElements: '.scroll-fade',
-    scaleElements: '.scroll-scale',
-  });
-
-  initAllPremiumEffects();
-
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const href = (this as HTMLAnchorElement).getAttribute('href');
-      if (href) {
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          });
-        }
-      }
-    });
-  });
-</script>
-
 <style>
-  /* Hero title enhancement */
   .hero h1 {
     line-height: 1;
   }
 
+  .hero-title {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.2rem, 3vw, 2rem);
+  }
+
+  .hero-subtitle {
+    font-size: clamp(0.95rem, 2vw, 1.2rem);
+  }
+
   @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 3.5rem;
-    }
-    .hero .text-\[2rem\] {
-      font-size: 1.4rem;
-    }
-    .hero .text-\[1\.2rem\] {
-      font-size: 1rem;
-    }
     .brand-mark-premium {
       width: 100px;
       height: 100px;
