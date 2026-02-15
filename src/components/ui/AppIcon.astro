@@ -1,0 +1,47 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  variant?: 'blue' | 'red';
+}
+
+const { src, alt, size = 'lg', class: className = '', variant = 'red' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-[88px] h-[88px] rounded-[22px]',
+  md: 'w-[120px] h-[120px] rounded-[28px]',
+  lg: 'w-[180px] h-[180px] rounded-[32px]',
+};
+
+const glowColor = variant === 'red' ? 'rgba(252, 61, 79, 0.3)' : 'rgba(0, 122, 255, 0.25)';
+---
+
+<div
+  class:list={[
+    'app-icon flex items-center justify-center animate-float relative',
+    sizeClasses[size],
+    className,
+  ]}
+  style={`box-shadow: 0 32px 64px ${glowColor}, 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);`}
+>
+  <img
+    src={src}
+    alt={alt}
+    class="w-full h-full rounded-[inherit] object-cover"
+    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+  />
+  <div
+    class="hidden w-full h-full rounded-[inherit] items-center justify-center text-5xl"
+    style={`background: linear-gradient(135deg, ${variant === 'red' ? '#FC3D4F' : '#007AFF'} 0%, ${variant === 'red' ? '#FF6B7D' : '#5AC8FA'} 100%);`}
+  >
+    🎂
+  </div>
+
+  <!-- Glow effect -->
+  <div
+    class="absolute -inset-0.5 rounded-[34px] -z-10 opacity-50 blur-lg"
+    style={`background: linear-gradient(135deg, ${variant === 'red' ? '#FC3D4F' : '#007AFF'}, transparent, ${variant === 'red' ? '#FC3D4F' : '#007AFF'});`}
+  />
+</div>

@@ -1,0 +1,30 @@
+---
+import { URLS } from '@/lib/constants';
+
+interface Props {
+  href: string;
+  size?: 'sm' | 'lg';
+  class?: string;
+}
+
+const { href, size = 'lg', class: className = '' } = Astro.props;
+
+const sizeClasses = {
+  sm: 'w-[200px]',
+  lg: 'w-[240px]',
+};
+---
+
+<a href={href} target="_blank" rel="noopener noreferrer" class={className}>
+  <img
+    src={URLS.appStore.badge}
+    alt="Download on the App Store"
+    class:list={[
+      'inline-block h-auto transition-all duration-300',
+      sizeClasses[size],
+      size === 'lg'
+        ? 'drop-shadow-[0_12px_40px_rgba(0,0,0,0.4)] hover:drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] hover:-translate-y-0.5 hover:scale-[1.02]'
+        : 'brightness-90 hover:brightness-100 hover:scale-105',
+    ]}
+  />
+</a>
