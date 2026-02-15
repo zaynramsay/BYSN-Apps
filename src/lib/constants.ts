@@ -54,6 +54,7 @@ export const NAV_LINKS = {
   ],
   cake: [
     { label: 'Features', href: '#features' },
+    { label: 'How It Works', href: '#how-it-works' },
     { label: 'Privacy', href: '#privacy' },
     { label: 'Download', href: '#download' },
   ],
