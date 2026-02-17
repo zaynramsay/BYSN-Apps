@@ -1,0 +1,1535 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE, APPS, FOOTER_LINKS } from '@/lib/constants';
+
+const featuredApps = [
+  {
+    name: APPS.cake.name,
+    tagline: APPS.cake.tagline,
+    description: APPS.cake.description,
+    features: APPS.cake.features,
+    icon: '/assets/cakeIcon.png',
+    href: '/apps/cake',
+    state: 'Live',
+    cta: 'View Product',
+  },
+  {
+    name: APPS.cosmic.name,
+    tagline: APPS.cosmic.tagline,
+    description: APPS.cosmic.description,
+    features: APPS.cosmic.features,
+    icon: '/assets/cosmicIcon.png',
+    href: '#contact',
+    state: 'Soon',
+    cta: 'Join Launch List',
+  },
+];
+
+const craftSignals = [
+  {
+    title: 'SwiftUI Product Core',
+    copy:
+      'Native iOS views, state architecture, and release loops optimized for reliability and speed.',
+    command: 'swift build --configuration release',
+  },
+  {
+    title: 'HTML + CSS Web Surfaces',
+    copy:
+      'Marketing and product pages shaped with handcrafted layouts, motion, and responsive precision.',
+    command: 'npm run astro build',
+  },
+  {
+    title: 'CLI Driven Workflow',
+    copy:
+      'Terminal-first iteration keeps the ship cycle tight from concept to deployment.',
+    command: 'git commit && git push',
+  },
+];
+---
+
+<BaseLayout
+  title={`${SITE.name} | Swift & Web Product Lab`}
+  description="Immersive, code-first product studio building Swift-native apps and handcrafted web experiences."
+>
+  <!-- Canvas Starfield -->
+  <canvas id="starfield" aria-hidden="true"></canvas>
+
+  <!-- Cinematic Background Layers -->
+  <div class="cinema-bg" aria-hidden="true">
+    <span class="nebula nebula-a"></span>
+    <span class="nebula nebula-b"></span>
+    <span class="nebula nebula-c"></span>
+    <span class="light-leak leak-a"></span>
+    <span class="light-leak leak-b"></span>
+    <span class="comet comet-a"></span>
+    <span class="comet comet-b"></span>
+    <span class="comet comet-c"></span>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="horizon-glow" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="site-nav" data-nav>
+    <a class="brand" href="#top" aria-label="BYSN Apps Home">BYSN Apps</a>
+
+    <nav aria-label="Primary" class="nav-links">
+      <a href="#apps">Apps</a>
+      <a href="#craft">Craft</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <a class="nav-cta" href="/apps/cake">Open Cake</a>
+  </header>
+
+  <!-- Act I: The Opening -->
+  <main class="home-shell" id="top">
+    <section class="hero">
+      <div class="hero-title reveal" data-reveal-group="hero">
+        <p class="hero-overline">
+          <span class="overline-dash"></span>
+          <span>A product studio</span>
+        </p>
+        <h1>
+          <span class="title-line">Premium software</span>
+          <span class="title-line title-accent">crafted in Swift,</span>
+          <span class="title-line title-accent">HTML, and CSS.</span>
+        </h1>
+        <p class="hero-body">
+          BYSN Apps builds modern utility products with an engineering-first mindset.
+          The process blends native iOS execution, handcrafted web design, and terminal-speed iteration.
+        </p>
+      </div>
+
+      <!-- CLI Terminal Hero -->
+      <div class="hero-terminal reveal" data-reveal-group="hero">
+        <div class="terminal-chrome">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="terminal-title">bysn — studio</div>
+          <div class="terminal-badge">LIVE</div>
+        </div>
+        <div class="terminal-body" id="terminal-output">
+          <!-- Lines typed by JS -->
+        </div>
+        <div class="terminal-footer">
+          <span class="terminal-status"><span class="status-indicator"></span> runtime: active</span>
+          <span>pid 4821 · 0.02s</span>
+        </div>
+      </div>
+
+      <div class="hero-details reveal" data-reveal-group="hero">
+        <div class="hero-actions">
+          <a href="#apps" class="button button-solid">Explore Products</a>
+          <a href={SITE.github} class="button button-ghost" target="_blank" rel="noreferrer">Source & Updates</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cinematic Divider -->
+    <div class="scene-break" aria-hidden="true">
+      <span class="break-line"></span>
+    </div>
+
+    <!-- Act II: The Products -->
+    <section id="apps" class="apps-section">
+      <div class="section-head reveal">
+        <p class="eyebrow">PRODUCTS</p>
+        <h2>Tools people keep.</h2>
+        <p class="section-sub">Software designed to be indispensable.</p>
+      </div>
+
+      <div class="apps-grid">
+        {
+          featuredApps.map((app) => (
+            <article class="app-card reveal">
+              <div class="app-top">
+                <span class={`state-pill ${app.state === 'Soon' ? 'is-soon' : ''}`}>{app.state}</span>
+                <div class="app-header">
+                  <img src={app.icon} alt={`${app.name} app icon`} class="app-card-icon" />
+                  <div>
+                    <h3>{app.name}</h3>
+                    <p>{app.tagline}</p>
+                  </div>
+                </div>
+              </div>
+
+              <p class="app-description">{app.description}</p>
+
+              <ul class="feature-list" aria-label={`${app.name} feature list`}>
+                {app.features.map((feature) => <li>{feature}</li>)}
+              </ul>
+
+              <a class={`app-link ${app.state === 'Soon' ? 'is-soon' : ''}`} href={app.href}>
+                {app.cta}
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- Cinematic Divider -->
+    <div class="scene-break" aria-hidden="true">
+      <span class="break-line"></span>
+    </div>
+
+    <!-- Act III: The Craft -->
+    <section id="craft" class="craft-section">
+      <div class="section-head reveal">
+        <p class="eyebrow">SYSTEM</p>
+        <h2>Design quality with engineering throughput.</h2>
+        <p class="section-sub">Three disciplines. One seamless pipeline.</p>
+      </div>
+
+      <div class="craft-grid">
+        {
+          craftSignals.map((item) => (
+            <article class="craft-card reveal">
+              <h3>{item.title}</h3>
+              <p>{item.copy}</p>
+              <code>{item.command}</code>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <!-- Epilogue -->
+  <footer id="contact" class="site-footer reveal">
+    <div>
+      <p class="eyebrow">CONTACT</p>
+      <h2>Build something clear and useful.</h2>
+      <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+    </div>
+
+    <div class="footer-links">
+      {FOOTER_LINKS.home.map((link) => <a href={link.href}>{link.label}</a>)}
+    </div>
+
+    <p class="copyright">&copy; {new Date().getFullYear()} {SITE.name}. Crafted in Boston.</p>
+  </footer>
+
+  <script>
+    const initHome = () => {
+      /* ══════════════════════════════════
+         STARFIELD CANVAS
+         ══════════════════════════════════ */
+      const canvas = document.getElementById('starfield') as HTMLCanvasElement;
+      if (canvas) {
+        const ctx = canvas.getContext('2d')!;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const STAR_COUNT = 600;
+        const SPEED = prefersReducedMotion ? 0 : 0.6;
+        const stars: { x: number; y: number; z: number; pz: number }[] = [];
+
+        const resize = () => {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        };
+        resize();
+        window.addEventListener('resize', resize);
+
+        for (let i = 0; i < STAR_COUNT; i++) {
+          const z = Math.random() * canvas.width;
+          stars.push({
+            x: (Math.random() - 0.5) * canvas.width * 2,
+            y: (Math.random() - 0.5) * canvas.height * 2,
+            z,
+            pz: z,
+          });
+        }
+
+        const cx = () => canvas.width / 2;
+        const cy = () => canvas.height / 2;
+
+        const drawStarfield = () => {
+          ctx.fillStyle = 'rgba(2, 2, 4, 0.25)';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          for (const star of stars) {
+            star.pz = star.z;
+            star.z -= SPEED;
+
+            if (star.z <= 0) {
+              star.x = (Math.random() - 0.5) * canvas.width * 2;
+              star.y = (Math.random() - 0.5) * canvas.height * 2;
+              star.z = canvas.width;
+              star.pz = canvas.width;
+            }
+
+            const sx = (star.x / star.z) * canvas.width * 0.5 + cx();
+            const sy = (star.y / star.z) * canvas.height * 0.5 + cy();
+
+            const px = (star.x / star.pz) * canvas.width * 0.5 + cx();
+            const py = (star.y / star.pz) * canvas.height * 0.5 + cy();
+
+            const size = Math.max(0, (1 - star.z / canvas.width) * 2.2);
+            const alpha = Math.max(0, (1 - star.z / canvas.width) * 0.85);
+
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(180, 210, 255, ${alpha})`;
+            ctx.lineWidth = size;
+            ctx.moveTo(px, py);
+            ctx.lineTo(sx, sy);
+            ctx.stroke();
+          }
+
+          requestAnimationFrame(drawStarfield);
+        };
+
+        if (!prefersReducedMotion) {
+          // Initial fill so it doesn't start blank
+          ctx.fillStyle = '#020204';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+          drawStarfield();
+        }
+      }
+
+      /* ══════════════════════════════════
+         CLI TYPEWRITER
+         ══════════════════════════════════ */
+      const terminalEl = document.getElementById('terminal-output');
+      if (terminalEl) {
+        interface TermLine {
+          text: string;
+          type: 'cmd' | 'out' | 'success' | 'dim' | 'header' | 'blank';
+          delay?: number;
+        }
+
+        const lines: TermLine[] = [
+          { text: '$ bysn init --workspace studio', type: 'cmd' },
+          { text: '', type: 'blank', delay: 200 },
+          { text: '  ◆ Initializing BYSN product pipeline...', type: 'out', delay: 80 },
+          { text: '  ◆ Loading SwiftUI render engine        [native-first]', type: 'out', delay: 60 },
+          { text: '  ◆ Mounting Astro web surface            [zero-js]', type: 'out', delay: 60 },
+          { text: '  ◆ Binding CLI orchestration layer       [terminal-speed]', type: 'out', delay: 60 },
+          { text: '', type: 'blank', delay: 150 },
+          { text: '$ swift build --configuration release', type: 'cmd', delay: 400 },
+          { text: '', type: 'blank', delay: 100 },
+          { text: '  Compiling Cake.swift                    (1/12)', type: 'dim', delay: 40 },
+          { text: '  Compiling ReminderEngine.swift          (2/12)', type: 'dim', delay: 30 },
+          { text: '  Compiling WidgetProvider.swift           (3/12)', type: 'dim', delay: 30 },
+          { text: '  Compiling ContactSync.swift             (4/12)', type: 'dim', delay: 25 },
+          { text: '  Compiling PrivacyVault.swift            (5/12)', type: 'dim', delay: 25 },
+          { text: '  Compiling NotificationCore.swift        (6/12)', type: 'dim', delay: 25 },
+          { text: '  Linking CakeApp...', type: 'dim', delay: 80 },
+          { text: '', type: 'blank', delay: 100 },
+          { text: '  ✓ Build succeeded — 0 errors, 0 warnings', type: 'success', delay: 200 },
+          { text: '  ✓ Binary size: 4.2 MB (optimized)', type: 'success', delay: 80 },
+          { text: '  ✓ Privacy audit: passed — zero tracking', type: 'success', delay: 80 },
+          { text: '', type: 'blank', delay: 200 },
+          { text: '$ bysn deploy --target production', type: 'cmd', delay: 400 },
+          { text: '', type: 'blank', delay: 100 },
+          { text: '  Bundling assets ........................ done', type: 'out', delay: 60 },
+          { text: '  Running test suite (47 tests) ......... passed', type: 'out', delay: 60 },
+          { text: '  Validating App Store compliance ........ clean', type: 'out', delay: 60 },
+          { text: '  Generating screenshots ................ 6 devices', type: 'out', delay: 60 },
+          { text: '  Signing with distribution cert ........ verified', type: 'out', delay: 60 },
+          { text: '  Uploading to App Store Connect ........ ████████ 100%', type: 'out', delay: 100 },
+          { text: '', type: 'blank', delay: 150 },
+          { text: '  ✓ Cake v2.0.0 shipped to production', type: 'success', delay: 200 },
+          { text: '  ✓ Estimated review time: <24h', type: 'success', delay: 80 },
+          { text: '  ✓ 1,000+ active users · 4.9★ rating', type: 'success', delay: 80 },
+          { text: '', type: 'blank', delay: 300 },
+          { text: '$ npm run astro build', type: 'cmd', delay: 400 },
+          { text: '', type: 'blank', delay: 100 },
+          { text: '  ▶ Building bysnapps.com ...', type: 'out', delay: 60 },
+          { text: '  ▶ 3 pages, 0 client JS, 100 Lighthouse', type: 'out', delay: 60 },
+          { text: '  ✓ Site deployed to edge in 340ms', type: 'success', delay: 150 },
+          { text: '', type: 'blank', delay: 300 },
+          { text: '  ┌──────────────────────────────────────────┐', type: 'header', delay: 100 },
+          { text: '  │  BYSN STUDIO — ALL SYSTEMS OPERATIONAL   │', type: 'header', delay: 60 },
+          { text: '  │  Apps: 2 · Pipeline: nominal · Uptime: ∞ │', type: 'header', delay: 60 },
+          { text: '  └──────────────────────────────────────────┘', type: 'header', delay: 100 },
+        ];
+
+        let lineIndex = 0;
+
+        const addLine = (line: TermLine) => {
+          const el = document.createElement('div');
+          el.classList.add('term-line');
+
+          if (line.type === 'blank') {
+            el.innerHTML = '&nbsp;';
+            el.classList.add('term-blank');
+          } else if (line.type === 'cmd') {
+            el.classList.add('term-cmd');
+            el.textContent = '';
+            terminalEl.appendChild(el);
+            terminalEl.scrollTop = terminalEl.scrollHeight;
+            // Typewriter for commands
+            let charIdx = 0;
+            return new Promise<void>((resolve) => {
+              const typeChar = () => {
+                if (charIdx < line.text.length) {
+                  el.textContent = line.text.slice(0, charIdx + 1);
+                  charIdx++;
+                  terminalEl.scrollTop = terminalEl.scrollHeight;
+                  setTimeout(typeChar, 18 + Math.random() * 22);
+                } else {
+                  resolve();
+                }
+              };
+              typeChar();
+            });
+          } else {
+            el.classList.add(`term-${line.type}`);
+            el.textContent = line.text;
+          }
+
+          terminalEl.appendChild(el);
+          terminalEl.scrollTop = terminalEl.scrollHeight;
+          return Promise.resolve();
+        };
+
+        const runTerminal = async () => {
+          // Initial delay
+          await new Promise((r) => setTimeout(r, 800));
+
+          for (const line of lines) {
+            await addLine(line);
+            await new Promise((r) => setTimeout(r, line.delay ?? 50));
+          }
+
+          // Blinking cursor at end
+          const cursor = document.createElement('div');
+          cursor.classList.add('term-line', 'term-cmd');
+          cursor.innerHTML = '$ <span class="term-cursor"></span>';
+          terminalEl.appendChild(cursor);
+          terminalEl.scrollTop = terminalEl.scrollHeight;
+        };
+
+        // Start once terminal is revealed
+        const termWrapper = document.querySelector('.hero-terminal');
+        if (termWrapper) {
+          const termObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  runTerminal();
+                  termObserver.unobserve(entry.target);
+                }
+              });
+            },
+            { threshold: 0.3 }
+          );
+          termObserver.observe(termWrapper);
+        }
+      }
+
+      /* ══════════════════════════════════
+         NAVIGATION SCROLL
+         ══════════════════════════════════ */
+      const nav = document.querySelector('[data-nav]');
+      const onScroll = () => {
+        if (!nav) return;
+        nav.classList.toggle('is-scrolled', window.scrollY > 20);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      /* ══════════════════════════════════
+         REVEAL SYSTEM
+         ══════════════════════════════════ */
+      const nodes = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) {
+        nodes.forEach((node) => node.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+          rootMargin: '0px 0px -6% 0px',
+        }
+      );
+
+      nodes.forEach((node, index) => {
+        node.style.setProperty('--delay', `${index * 90}ms`);
+        observer.observe(node);
+      });
+
+      /* ══════════════════════════════════
+         SCROLL PARALLAX
+         ══════════════════════════════════ */
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (!prefersReducedMotion) {
+        const nebulas = document.querySelectorAll('.nebula');
+        const horizon = document.querySelector('.horizon-glow');
+        let ticking = false;
+        const onScrollParallax = () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const s = window.scrollY;
+            nebulas.forEach((n, i) => {
+              const speed = 0.02 + i * 0.015;
+              (n as HTMLElement).style.transform = `translateY(${s * speed}px)`;
+            });
+            if (horizon) {
+              (horizon as HTMLElement).style.opacity = `${Math.max(0, 0.35 - s * 0.0004)}`;
+            }
+            ticking = false;
+          });
+        };
+        window.addEventListener('scroll', onScrollParallax, { passive: true });
+      }
+
+      /* ══════════════════════════════════
+         SCENE BREAKS
+         ══════════════════════════════════ */
+      const breaks = document.querySelectorAll('.scene-break');
+      const breakObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              breakObserver.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      breaks.forEach((b) => breakObserver.observe(b));
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initHome, { once: true });
+    } else {
+      initHome();
+    }
+  </script>
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  /* ═══════════════════════════════════
+     CINEMATIC FOUNDATIONS
+     ═══════════════════════════════════ */
+
+  :global(body.bg-gradient-main) {
+    background-color: #020204 !important;
+    background-image: none !important;
+    color: #f1f1ed;
+  }
+
+  :global(body.bg-gradient-main)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background: radial-gradient(ellipse 120% 60% at 50% 10%, rgba(200, 220, 255, 0.04), transparent 60%);
+  }
+
+  /* ═══════════════════════════════════
+     CANVAS STARFIELD
+     ═══════════════════════════════════ */
+
+  #starfield {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  /* ═══════════════════════════════════
+     ATMOSPHERIC LAYERS
+     ═══════════════════════════════════ */
+
+  .cinema-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -3;
+  }
+
+  .nebula {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+    will-change: transform;
+  }
+
+  .nebula-a {
+    width: 42rem;
+    height: 42rem;
+    left: -14rem;
+    top: -12rem;
+    background: radial-gradient(circle, rgba(100, 140, 255, 0.12), rgba(70, 100, 200, 0.04), transparent 70%);
+    animation: nebulaFloat 30s ease-in-out infinite;
+  }
+
+  .nebula-b {
+    width: 36rem;
+    height: 36rem;
+    right: -10rem;
+    top: 30%;
+    background: radial-gradient(circle, rgba(140, 180, 255, 0.08), rgba(90, 130, 200, 0.03), transparent 70%);
+    animation: nebulaFloat 38s ease-in-out infinite reverse;
+  }
+
+  .nebula-c {
+    width: 48rem;
+    height: 32rem;
+    left: 20%;
+    bottom: -14rem;
+    background: radial-gradient(ellipse, rgba(120, 200, 220, 0.1), rgba(80, 160, 180, 0.03), transparent 70%);
+    animation: nebulaFloat 44s ease-in-out infinite;
+    animation-delay: -12s;
+  }
+
+  .light-leak {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(120px);
+    opacity: 0;
+    animation: lightLeak 18s ease-in-out infinite;
+  }
+
+  .leak-a {
+    width: 22rem;
+    height: 8rem;
+    top: 8%;
+    left: 55%;
+    background: rgba(180, 210, 255, 0.22);
+    animation-delay: 0s;
+  }
+
+  .leak-b {
+    width: 18rem;
+    height: 6rem;
+    top: 42%;
+    left: 10%;
+    background: rgba(150, 200, 240, 0.18);
+    animation-delay: -8s;
+  }
+
+  .comet {
+    position: absolute;
+    width: 14rem;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(180, 210, 255, 0), rgba(200, 225, 255, 0.9), rgba(180, 210, 255, 0));
+    transform: rotate(-30deg);
+    opacity: 0;
+    filter: drop-shadow(0 0 12px rgba(160, 200, 255, 0.5));
+  }
+
+  .comet-a {
+    top: 10%;
+    left: 75%;
+    animation: cometFlightA 20s linear infinite;
+  }
+
+  .comet-b {
+    top: 50%;
+    left: 15%;
+    animation: cometFlightB 26s linear infinite;
+    animation-delay: 6s;
+  }
+
+  .comet-c {
+    top: 30%;
+    left: 50%;
+    animation: cometFlightC 32s linear infinite;
+    animation-delay: 14s;
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    box-shadow: inset 0 0 280px rgba(0, 0, 0, 0.94);
+    animation: vignettePulse 12s ease-in-out infinite;
+  }
+
+  .film-grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.028;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    animation: grainShift 0.3s steps(4) infinite;
+  }
+
+  .horizon-glow {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 14%;
+    height: 1px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.35;
+    background: linear-gradient(90deg, transparent 5%, rgba(140, 180, 255, 0.25) 30%, rgba(180, 210, 255, 0.4) 50%, rgba(140, 180, 255, 0.25) 70%, transparent 95%);
+    box-shadow:
+      0 0 80px 30px rgba(140, 180, 255, 0.08),
+      0 0 160px 60px rgba(100, 140, 220, 0.04);
+    will-change: opacity;
+  }
+
+  /* ═══════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════ */
+
+  .site-nav {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.62rem 0.9rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(6, 6, 12, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: background 400ms ease, border-color 400ms ease, box-shadow 400ms ease;
+  }
+
+  .site-nav.is-scrolled {
+    background: rgba(6, 6, 10, 0.85);
+    border-color: rgba(255, 255, 255, 0.16);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .brand {
+    text-decoration: none;
+    color: #f5f5f1;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .nav-links a {
+    text-decoration: none;
+    color: rgba(236, 236, 232, 0.65);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 300ms ease;
+    white-space: nowrap;
+  }
+
+  .nav-links a:hover {
+    color: #fcfcfa;
+  }
+
+  .nav-cta {
+    text-decoration: none;
+    color: #0a0a09;
+    background: #f2f4ef;
+    border-radius: 999px;
+    padding: 0.44rem 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 300ms ease, box-shadow 300ms ease;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* ═══════════════════════════════════
+     MAIN SHELL
+     ═══════════════════════════════════ */
+
+  .home-shell {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto;
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  /* ═══════════════════════════════════
+     HERO
+     ═══════════════════════════════════ */
+
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    grid-template-areas:
+      'title terminal'
+      'details terminal';
+    column-gap: 2.5rem;
+    row-gap: 1.4rem;
+    align-items: start;
+    margin-bottom: 7rem;
+  }
+
+  .hero-title {
+    grid-area: title;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .hero-overline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.6rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(160, 180, 220, 0.7);
+  }
+
+  .overline-dash {
+    display: block;
+    width: 1.8rem;
+    height: 1px;
+    background: rgba(140, 170, 220, 0.5);
+  }
+
+  .hero-title h1 {
+    margin: 0 0 1.4rem;
+    font-size: clamp(2.8rem, 6.5vw, 5.4rem);
+    line-height: 0.94;
+    letter-spacing: -0.03em;
+    color: #f5f4f1;
+    font-weight: 700;
+  }
+
+  .title-line {
+    display: block;
+  }
+
+  .title-accent {
+    color: rgba(190, 215, 255, 0.88);
+  }
+
+  .hero-body {
+    margin: 0;
+    max-width: 52ch;
+    color: rgba(190, 195, 210, 0.78);
+    line-height: 1.8;
+    font-size: 0.95rem;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .eyebrow {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.62rem;
+    color: rgba(140, 160, 210, 0.6);
+  }
+
+  .hero-details {
+    grid-area: details;
+    max-width: 37rem;
+  }
+
+  .hero-actions {
+    margin-top: 2.2rem;
+    display: flex;
+    gap: 0.74rem;
+    flex-wrap: wrap;
+  }
+
+  .button {
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.72rem 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.67rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 300ms ease, border-color 300ms ease, background 300ms ease, box-shadow 300ms ease;
+  }
+
+  .button-solid {
+    color: #040404;
+    background: #f2f3ef;
+  }
+
+  .button-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(255, 255, 255, 0.12);
+  }
+
+  .button-ghost {
+    color: rgba(200, 210, 230, 0.9);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .button-ghost:hover {
+    transform: translateY(-2px);
+    border-color: rgba(160, 200, 255, 0.4);
+    background: rgba(140, 180, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(120, 160, 240, 0.08);
+  }
+
+  /* ═══════════════════════════════════
+     HERO CLI TERMINAL
+     ═══════════════════════════════════ */
+
+  .hero-terminal {
+    grid-area: terminal;
+    border-radius: 14px;
+    border: 1px solid rgba(140, 180, 255, 0.12);
+    background: rgba(6, 6, 12, 0.88);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    box-shadow:
+      0 24px 80px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(100, 140, 220, 0.06) inset;
+    align-self: start;
+  }
+
+  .terminal-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(10, 10, 18, 0.6);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 0.38rem;
+  }
+
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+  }
+
+  .dot-red { background: rgba(255, 95, 87, 0.85); }
+  .dot-yellow { background: rgba(255, 189, 46, 0.85); }
+  .dot-green { background: rgba(39, 201, 63, 0.85); }
+
+  .terminal-title {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: rgba(180, 190, 220, 0.5);
+    text-align: center;
+  }
+
+  .terminal-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(80, 220, 140, 0.9);
+    border: 1px solid rgba(80, 220, 140, 0.3);
+    border-radius: 999px;
+    padding: 0.14rem 0.44rem;
+    animation: badgePulse 3s ease-in-out infinite;
+  }
+
+  .terminal-body {
+    padding: 0.8rem 0.9rem;
+    min-height: 22rem;
+    max-height: 28rem;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    line-height: 1.65;
+    letter-spacing: 0.02em;
+    scrollbar-width: none;
+  }
+
+  .terminal-body::-webkit-scrollbar {
+    display: none;
+  }
+
+  .terminal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.55rem 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.07);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.56rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(140, 155, 190, 0.5);
+  }
+
+  .terminal-status {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-indicator {
+    display: inline-block;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-radius: 999px;
+    background: rgba(80, 220, 140, 0.9);
+    box-shadow: 0 0 10px rgba(80, 220, 140, 0.5);
+    animation: statusPulse 3s ease-in-out infinite;
+  }
+
+  /* Terminal line styles */
+  :global(.term-line) {
+    white-space: pre;
+    min-height: 1.1em;
+  }
+
+  :global(.term-cmd) {
+    color: rgba(220, 235, 255, 0.95);
+    font-weight: 600;
+  }
+
+  :global(.term-out) {
+    color: rgba(160, 180, 220, 0.78);
+  }
+
+  :global(.term-success) {
+    color: rgba(80, 220, 140, 0.92);
+  }
+
+  :global(.term-dim) {
+    color: rgba(130, 145, 180, 0.5);
+  }
+
+  :global(.term-header) {
+    color: rgba(140, 190, 255, 0.8);
+  }
+
+  :global(.term-blank) {
+    height: 0.5em;
+    min-height: 0.5em;
+  }
+
+  :global(.term-cursor) {
+    display: inline-block;
+    width: 0.52em;
+    height: 1.1em;
+    background: rgba(180, 210, 255, 0.8);
+    vertical-align: text-bottom;
+    animation: cursorBlink 1s steps(2) infinite;
+  }
+
+  /* ═══════════════════════════════════
+     SCENE BREAKS
+     ═══════════════════════════════════ */
+
+  .scene-break {
+    display: flex;
+    justify-content: center;
+    padding: 3.5rem 0;
+  }
+
+  .break-line {
+    display: block;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(140, 180, 255, 0.3), transparent);
+    transition: width 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .scene-break.is-visible .break-line {
+    width: min(280px, 60%);
+  }
+
+  /* ═══════════════════════════════════
+     SECTIONS
+     ═══════════════════════════════════ */
+
+  .apps-section,
+  .craft-section {
+    margin-top: 2rem;
+  }
+
+  .section-head {
+    margin-bottom: 1.8rem;
+  }
+
+  .section-head h2 {
+    margin: 0.7rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    font-size: clamp(1.5rem, 4.2vw, 2.9rem);
+    color: #f5f4ef;
+  }
+
+  .section-sub {
+    margin: 0.5rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.92rem;
+    color: rgba(180, 185, 200, 0.6);
+    line-height: 1.7;
+  }
+
+  .apps-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.95rem;
+  }
+
+  .app-card {
+    border-radius: 16px;
+    border: 1px solid rgba(140, 180, 255, 0.08);
+    background: linear-gradient(168deg, rgba(10, 10, 18, 0.92), rgba(6, 6, 12, 0.96));
+    padding: 1.1rem;
+    transition: border-color 400ms ease, box-shadow 400ms ease, transform 400ms ease;
+  }
+
+  .app-card:hover {
+    border-color: rgba(140, 180, 255, 0.16);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .app-header {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 0.6rem;
+  }
+
+  .app-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    flex-shrink: 0;
+  }
+
+  .app-top h3 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f7f7f4;
+  }
+
+  .app-top p {
+    margin: 0.25rem 0 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.69rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(160, 170, 200, 0.55);
+  }
+
+  .state-pill {
+    display: inline-flex;
+    border-radius: 999px;
+    padding: 0.2rem 0.46rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(220, 225, 240, 0.7);
+  }
+
+  .state-pill.is-soon {
+    border-color: rgba(130, 190, 255, 0.3);
+    color: rgba(140, 200, 255, 0.82);
+  }
+
+  .app-description {
+    margin: 0.85rem 0;
+    color: rgba(185, 190, 210, 0.78);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+
+  .feature-list {
+    list-style: none;
+    margin: 0 0 0.95rem;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.42rem;
+  }
+
+  .feature-list li {
+    border-radius: 999px;
+    border: 1px solid rgba(140, 180, 255, 0.1);
+    background: rgba(100, 140, 220, 0.04);
+    padding: 0.26rem 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(180, 195, 230, 0.65);
+  }
+
+  .app-link {
+    display: inline-flex;
+    text-decoration: none;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(220, 225, 240, 0.88);
+    padding: 0.48rem 0.72rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.6rem;
+    transition: border-color 300ms ease, transform 300ms ease, box-shadow 300ms ease;
+  }
+
+  .app-link:hover {
+    transform: translateY(-1px);
+    border-color: rgba(160, 200, 255, 0.35);
+    box-shadow: 0 4px 16px rgba(100, 150, 240, 0.08);
+  }
+
+  .app-link.is-soon {
+    border-color: rgba(130, 190, 255, 0.3);
+    color: rgba(140, 200, 255, 0.88);
+  }
+
+  .craft-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  .craft-card {
+    border-radius: 16px;
+    border: 1px solid rgba(140, 180, 255, 0.08);
+    background: linear-gradient(172deg, rgba(10, 10, 18, 0.92), rgba(6, 6, 12, 0.96));
+    padding: 1.1rem;
+    transition: border-color 400ms ease, box-shadow 400ms ease, transform 400ms ease;
+  }
+
+  .craft-card:hover {
+    border-color: rgba(140, 180, 255, 0.16);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+    transform: translateY(-2px);
+  }
+
+  .craft-card h3 {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f5f5f2;
+  }
+
+  .craft-card p {
+    margin: 0.64rem 0 0.9rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: rgba(180, 185, 200, 0.78);
+  }
+
+  .craft-card code {
+    display: inline-flex;
+    border-radius: 8px;
+    border: 1px solid rgba(120, 170, 240, 0.2);
+    background: rgba(100, 150, 230, 0.06);
+    padding: 0.44rem 0.52rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+    color: rgba(140, 200, 255, 0.85);
+  }
+
+  /* ═══════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════ */
+
+  .site-footer {
+    width: min(1200px, calc(100% - 2rem));
+    margin: 0 auto 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(140, 180, 255, 0.08);
+    background: rgba(6, 6, 12, 0.85);
+    padding: 1.2rem;
+    display: grid;
+    gap: 0.9rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  .site-footer h2 {
+    margin: 0.55rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.35rem, 3vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: #f4f4ef;
+  }
+
+  .site-footer a {
+    color: rgba(130, 190, 255, 0.85);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.73rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 300ms ease;
+  }
+
+  .site-footer a:hover {
+    color: rgba(170, 215, 255, 0.95);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-links a {
+    border-radius: 999px;
+    border: 1px solid rgba(140, 180, 255, 0.12);
+    background: rgba(100, 140, 220, 0.04);
+    padding: 0.36rem 0.58rem;
+    color: rgba(200, 210, 230, 0.75);
+    font-size: 0.64rem;
+  }
+
+  .copyright {
+    margin: 0;
+    padding-top: 0.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(160, 170, 200, 0.45);
+  }
+
+  /* ═══════════════════════════════════
+     REVEAL SYSTEM
+     ═══════════════════════════════════ */
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(4px);
+    transition:
+      opacity 700ms cubic-bezier(0.23, 1, 0.32, 1) var(--delay, 0ms),
+      transform 700ms cubic-bezier(0.23, 1, 0.32, 1) var(--delay, 0ms),
+      filter 700ms cubic-bezier(0.23, 1, 0.32, 1) var(--delay, 0ms);
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+
+  /* ═══════════════════════════════════
+     KEYFRAMES
+     ═══════════════════════════════════ */
+
+  @keyframes nebulaFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -15px) scale(1.04); }
+    66% { transform: translate(-15px, 10px) scale(0.97); }
+  }
+
+  @keyframes lightLeak {
+    0%, 100% { opacity: 0; transform: scale(0.8); }
+    15% { opacity: 0.35; }
+    30% { opacity: 0; transform: scale(1.3); }
+  }
+
+  @keyframes cometFlightA {
+    0%, 68% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-30deg); }
+    72% { opacity: 0.75; }
+    100% { opacity: 0; transform: translate3d(-38vw, 24vh, 0) rotate(-30deg); }
+  }
+
+  @keyframes cometFlightB {
+    0%, 62% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-25deg); }
+    66% { opacity: 0.6; }
+    100% { opacity: 0; transform: translate3d(-30vw, 20vh, 0) rotate(-25deg); }
+  }
+
+  @keyframes cometFlightC {
+    0%, 75% { opacity: 0; transform: translate3d(0, 0, 0) rotate(-35deg); }
+    78% { opacity: 0.5; }
+    100% { opacity: 0; transform: translate3d(-25vw, 16vh, 0) rotate(-35deg); }
+  }
+
+  @keyframes vignettePulse {
+    0%, 100% { box-shadow: inset 0 0 280px rgba(0, 0, 0, 0.94); }
+    50% { box-shadow: inset 0 0 320px rgba(0, 0, 0, 0.97); }
+  }
+
+  @keyframes statusPulse {
+    0%, 100% { opacity: 0.7; box-shadow: 0 0 10px rgba(80, 220, 140, 0.4); }
+    50% { opacity: 1; box-shadow: 0 0 18px rgba(80, 220, 140, 0.7); }
+  }
+
+  @keyframes badgePulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes grainShift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2px, 3px); }
+    50% { transform: translate(3px, -1px); }
+    75% { transform: translate(-1px, -2px); }
+    100% { transform: translate(2px, 1px); }
+  }
+
+  /* ═══════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════ */
+
+  @media (max-width: 1080px) {
+    .hero {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'title'
+        'terminal'
+        'details';
+      gap: 1.2rem;
+    }
+
+    .terminal-body {
+      min-height: 18rem;
+      max-height: 24rem;
+    }
+
+    .craft-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 860px) {
+    .nav-links {
+      display: none;
+    }
+
+    .site-nav {
+      gap: 0.7rem;
+      padding: 0.55rem 0.75rem;
+    }
+
+    .brand {
+      font-size: 0.92rem;
+    }
+
+    .home-shell {
+      padding-top: 6rem;
+      width: calc(100% - 1.1rem);
+    }
+
+    .apps-grid,
+    .craft-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .button { text-align: center; }
+    .hero { margin-bottom: 4rem; }
+  }
+
+  @media (max-width: 560px) {
+    .hero-title h1 {
+      font-size: clamp(2.2rem, 14vw, 3.3rem);
+    }
+
+    .app-card,
+    .craft-card,
+    .site-footer {
+      padding: 0.9rem;
+    }
+
+    .scene-break { padding: 2.5rem 0; }
+
+    .terminal-body {
+      font-size: 0.58rem;
+      min-height: 16rem;
+      max-height: 22rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .comet,
+    .vignette,
+    .reveal,
+    .nebula,
+    .light-leak,
+    .film-grain,
+    .status-indicator,
+    .terminal-badge {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .reveal {
+      filter: none !important;
+    }
+
+    .film-grain {
+      opacity: 0 !important;
+    }
+
+    #starfield {
+      display: none;
+    }
+  }
+</style>

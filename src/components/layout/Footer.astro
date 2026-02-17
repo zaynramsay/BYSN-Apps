@@ -1,0 +1,28 @@
+---
+import { SITE } from '@/lib/constants';
+
+interface Props {
+  links: Array<{ label: string; href: string }>;
+  copyright?: string;
+}
+
+const { links, copyright = `© ${new Date().getFullYear()} ${SITE.name}. Made with care for creating premium experiences.` } = Astro.props;
+---
+
+<footer id="contact" class="py-20 px-6 text-center border-t border-white/5 bg-black/20">
+  <div class="max-w-xl mx-auto">
+    <div class="flex justify-center gap-8 mb-8 flex-wrap">
+      {
+        links.map((link) => (
+          <a
+            href={link.href}
+            class="text-text-tertiary text-sm font-medium tracking-tight transition-colors duration-300 hover:text-text-secondary"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+    <p class="text-text-muted text-sm tracking-tight">{copyright}</p>
+  </div>
+</footer>

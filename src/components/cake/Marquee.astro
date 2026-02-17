@@ -1,0 +1,28 @@
+---
+interface Props {
+  text?: string;
+  class?: string;
+}
+
+const { text = 'Download Cake', class: className = '' } = Astro.props;
+
+const phrases = ['Download Cake', 'Never Forget', 'Celebrate Better', 'Stay Connected'];
+const items = [...phrases, ...phrases];
+---
+
+<div class:list={['marquee-container overflow-hidden py-16 border-t border-b border-white/5', className]}>
+  <div class="marquee-track flex animate-infinite-scroll whitespace-nowrap">
+    {items.map((item) => (
+      <span class="marquee-item text-brand font-extrabold text-[clamp(2rem,5vw,4.5rem)] tracking-tighter mx-8 flex items-center gap-8 shrink-0">
+        {item}
+        <span class="w-2.5 h-2.5 rounded-full bg-brand/30 shrink-0" />
+      </span>
+    ))}
+    {items.map((item) => (
+      <span class="marquee-item text-brand font-extrabold text-[clamp(2rem,5vw,4.5rem)] tracking-tighter mx-8 flex items-center gap-8 shrink-0" aria-hidden="true">
+        {item}
+        <span class="w-2.5 h-2.5 rounded-full bg-brand/30 shrink-0" />
+      </span>
+    ))}
+  </div>
+</div>

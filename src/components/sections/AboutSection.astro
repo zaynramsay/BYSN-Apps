@@ -1,0 +1,116 @@
+---
+
+---
+
+<section class="about-section py-24 px-6 max-w-[1100px] mx-auto section-transition" id="about">
+  <!-- Section Header -->
+  <div class="text-center mb-16">
+    <h2 class="about-heading text-text-primary font-bold tracking-tighter mb-6 text-reveal">
+      About BYSN Apps
+    </h2>
+    <p class="about-subheading text-text-tertiary max-w-[600px] mx-auto leading-relaxed word-reveal">
+      Solo developer from Boston on a mission to make everyday tools feel alive.
+    </p>
+  </div>
+
+  <!-- About Cards Grid -->
+  <div class="grid md:grid-cols-2 gap-6 reveal-group">
+    <!-- Philosophy -->
+    <div class="reveal-item" style="transition-delay: 0s;">
+      <div class="about-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="about-icon w-14 h-14 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500"
+               style="background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2);">
+            ✨
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary tracking-tight">The Philosophy</h3>
+        </div>
+        <p class="text-text-tertiary leading-relaxed text-[15px]">
+          Boring tools don't have to feel boring. Birthday reminders, link converters, utility apps — they deserve the same craft and attention as any flagship product. That's what separates BYSN Apps: design that makes simple tools feel important.
+        </p>
+      </div>
+    </div>
+
+    <!-- Privacy -->
+    <div class="reveal-item" style="transition-delay: 0.05s;">
+      <div class="about-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="about-icon w-14 h-14 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500"
+               style="background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2);">
+            🔒
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary tracking-tight">Privacy First</h3>
+        </div>
+        <p class="text-text-tertiary leading-relaxed text-[15px]">
+          Apple-only development isn't just a preference — it's a reflection of core values. Your data stays on your device. No accounts, no tracking, no compromises. Privacy isn't a feature; it's the foundation.
+        </p>
+      </div>
+    </div>
+
+    <!-- Journey -->
+    <div class="reveal-item" style="transition-delay: 0.1s;">
+      <div class="about-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="about-icon w-14 h-14 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500"
+               style="background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2);">
+            🚀
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary tracking-tight">The Journey</h3>
+        </div>
+        <p class="text-text-tertiary leading-relaxed text-[15px]">
+          Started coding 5 years ago through YouTube tutorials. Graduated to Stack Overflow deep dives. Now building independently, turning ideas into polished experiences — one app at a time.
+        </p>
+      </div>
+    </div>
+
+    <!-- The Name -->
+    <div class="reveal-item" style="transition-delay: 0.15s;">
+      <div class="about-card-premium tilt-card glass-premium rounded-2xl p-8 h-full hover-lift group">
+        <div class="flex items-center gap-4 mb-6">
+          <div class="about-icon w-14 h-14 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform duration-500"
+               style="background: rgba(0, 122, 255, 0.1); border: 1px solid rgba(0, 122, 255, 0.2);">
+            🦬
+          </div>
+          <h3 class="text-xl font-semibold text-text-primary tracking-tight">Why "BYSN"?</h3>
+        </div>
+        <p class="text-text-tertiary leading-relaxed text-[15px]">
+          A nod to Appa from Avatar: The Last Airbender — loyal, reliable, and always there when you need them. That's the energy these apps aim to bring to your daily life.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal touch -->
+  <div class="text-center mt-16 scroll-fade" style="transition-delay: 0.25s;">
+    <p class="text-text-muted text-sm tracking-tight">
+      Built with care in Boston · iPhone enthusiast · Pokémon trainer · Sports fan
+    </p>
+  </div>
+</section>
+
+<style>
+  .about-card-premium:hover .about-icon {
+    background: rgba(0, 122, 255, 0.15) !important;
+    border-color: rgba(0, 122, 255, 0.3) !important;
+    box-shadow: 0 8px 30px rgba(0, 122, 255, 0.2);
+  }
+
+  .about-heading {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+
+  .about-subheading {
+    font-size: clamp(1rem, 2vw, 1.3rem);
+  }
+
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .about-card-premium {
+      padding: 1.5rem;
+    }
+  }
+</style>

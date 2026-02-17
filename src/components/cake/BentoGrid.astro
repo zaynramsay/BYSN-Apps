@@ -1,0 +1,85 @@
+---
+import BentoCard from './BentoCard.astro';
+import DeviceMockup from './DeviceMockup.astro';
+
+interface BentoItem {
+  icon: string;
+  title: string;
+  description: string;
+  span?: string;
+  accent?: boolean;
+  screenshot?: string;
+}
+
+interface Props {
+  items: BentoItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="bento-section py-24 px-6" id="features">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand/10 border border-brand/20 mb-6">
+        <span class="text-brand text-xs font-semibold tracking-wide uppercase">Features</span>
+      </div>
+      <h2 class="text-white font-extrabold tracking-tighter mb-4 bento-title">
+        Everything You <span class="text-brand">Need</span>
+      </h2>
+      <p class="text-text-body text-lg max-w-[500px] mx-auto">
+        Packed with features that make celebrating effortless.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-4 md:grid-cols-12 gap-4">
+      {items.map((item) => (
+        <BentoCard
+          class:list={[
+            item.span || 'col-span-4',
+            item.screenshot ? 'min-h-[320px]' : 'min-h-[180px]',
+            'scroll-fade',
+          ]}
+          glow={item.accent}
+        >
+          <div class="h-full flex flex-col justify-between relative">
+            <div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class:list={[
+                  'w-10 h-10 rounded-xl flex items-center justify-center text-xl',
+                  item.accent ? 'bg-brand/20' : 'bg-white/5',
+                ]}>
+                  {item.icon}
+                </div>
+                <h3 class="text-white font-semibold text-base tracking-tight">{item.title}</h3>
+              </div>
+              <p class="text-text-body text-sm leading-relaxed">{item.description}</p>
+            </div>
+
+            {item.screenshot && (
+              <div class="mt-4 flex justify-center -mb-6">
+                <div class="w-[140px] transform scale-90">
+                  <DeviceMockup screenshot={item.screenshot} alt={item.title} />
+                </div>
+              </div>
+            )}
+
+            {item.accent && !item.screenshot && (
+              <div class="mt-3 flex gap-1">
+                <div class="h-1 flex-1 rounded-full bg-brand" />
+                <div class="h-1 flex-1 rounded-full bg-brand/40" />
+                <div class="h-1 flex-1 rounded-full bg-white/10" />
+              </div>
+            )}
+          </div>
+        </BentoCard>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .bento-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+</style>

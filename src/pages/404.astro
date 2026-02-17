@@ -1,0 +1,517 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/lib/constants';
+---
+
+<BaseLayout
+  title={`404 — Page Not Found | ${SITE.name}`}
+  description="The page you're looking for doesn't exist."
+>
+  <!-- Cinematic Background Layers -->
+  <div class="cinema-bg" aria-hidden="true">
+    <span class="nebula nebula-a"></span>
+    <span class="nebula nebula-b"></span>
+  </div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div class="film-grain" aria-hidden="true"></div>
+
+  <!-- Navigation -->
+  <header class="site-nav">
+    <a class="brand" href="/" aria-label="BYSN Apps Home">BYSN Apps</a>
+    <a class="nav-cta" href="/">Go Home</a>
+  </header>
+
+  <!-- 404 Content -->
+  <main class="error-shell">
+    <div class="error-content">
+      <p class="error-overline">
+        <span class="overline-dash"></span>
+        <span>Signal lost</span>
+      </p>
+
+      <h1 class="error-code">404</h1>
+
+      <h2 class="error-title">Page not found</h2>
+
+      <p class="error-body">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+
+      <div class="error-terminal">
+        <div class="terminal-chrome">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <div class="terminal-title">bysn — 404</div>
+        </div>
+        <div class="terminal-body">
+          <div class="term-line term-cmd">$ curl -I {Astro.url.pathname}</div>
+          <div class="term-line term-blank">&nbsp;</div>
+          <div class="term-line term-out">  HTTP/2 404</div>
+          <div class="term-line term-out">  content-type: text/html</div>
+          <div class="term-line term-dim">  x-bysn-status: route-not-found</div>
+          <div class="term-line term-blank">&nbsp;</div>
+          <div class="term-line term-success">  suggestion: navigate to origin</div>
+          <div class="term-line term-cmd">$ open https://www.bysnapps.com<span class="term-cursor"></span></div>
+        </div>
+      </div>
+
+      <div class="error-actions">
+        <a href="/" class="button button-solid">Back to Home</a>
+        <a href="mailto:support@bysnapps.com" class="button button-ghost">Report Issue</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="error-footer">
+    <p>&copy; {new Date().getFullYear()} {SITE.name}. Crafted in Boston.</p>
+  </footer>
+</BaseLayout>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+  /* ═══════════════════════════════════
+     CINEMATIC FOUNDATIONS
+     ═══════════════════════════════════ */
+
+  :global(body.bg-gradient-main) {
+    background-color: #020204 !important;
+    background-image: none !important;
+    color: #f1f1ed;
+  }
+
+  :global(body.bg-gradient-main)::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    background: radial-gradient(ellipse 120% 60% at 50% 10%, rgba(200, 220, 255, 0.04), transparent 60%);
+  }
+
+  /* ═══════════════════════════════════
+     ATMOSPHERIC LAYERS
+     ═══════════════════════════════════ */
+
+  .cinema-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -3;
+  }
+
+  .nebula {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(90px);
+    will-change: transform;
+  }
+
+  .nebula-a {
+    width: 42rem;
+    height: 42rem;
+    left: -14rem;
+    top: -12rem;
+    background: radial-gradient(circle, rgba(100, 140, 255, 0.12), rgba(70, 100, 200, 0.04), transparent 70%);
+    animation: nebulaFloat 30s ease-in-out infinite;
+  }
+
+  .nebula-b {
+    width: 36rem;
+    height: 36rem;
+    right: -10rem;
+    bottom: -8rem;
+    background: radial-gradient(circle, rgba(140, 180, 255, 0.08), rgba(90, 130, 200, 0.03), transparent 70%);
+    animation: nebulaFloat 38s ease-in-out infinite reverse;
+  }
+
+  .vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -2;
+    box-shadow: inset 0 0 280px rgba(0, 0, 0, 0.94);
+  }
+
+  .film-grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.028;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    animation: grainShift 0.3s steps(4) infinite;
+  }
+
+  /* ═══════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════ */
+
+  .site-nav {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: fit-content;
+    max-width: calc(100% - 2rem);
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.62rem 0.9rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(6, 6, 12, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .brand {
+    text-decoration: none;
+    color: #f5f5f1;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+  }
+
+  .nav-cta {
+    text-decoration: none;
+    color: #0a0a09;
+    background: #f2f4ef;
+    border-radius: 999px;
+    padding: 0.44rem 0.82rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: transform 300ms ease, box-shadow 300ms ease;
+    white-space: nowrap;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* ═══════════════════════════════════
+     ERROR CONTENT
+     ═══════════════════════════════════ */
+
+  .error-shell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 6rem 1rem 4rem;
+    position: relative;
+    z-index: 3;
+  }
+
+  .error-content {
+    text-align: center;
+    max-width: 540px;
+    width: 100%;
+    animation: fadeInUp 800ms cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .error-overline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 1.8rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(160, 180, 220, 0.7);
+  }
+
+  .overline-dash {
+    display: block;
+    width: 1.8rem;
+    height: 1px;
+    background: rgba(140, 170, 220, 0.5);
+  }
+
+  .error-code {
+    margin: 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(6rem, 18vw, 12rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: transparent;
+    background: linear-gradient(180deg, rgba(200, 220, 255, 0.25) 0%, rgba(100, 140, 220, 0.06) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    user-select: none;
+  }
+
+  .error-title {
+    margin: 0.8rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: clamp(1.4rem, 4vw, 2.2rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: #f5f4ef;
+  }
+
+  .error-body {
+    margin: 0.8rem 0 0;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: rgba(190, 195, 210, 0.7);
+  }
+
+  /* ═══════════════════════════════════
+     MINI TERMINAL
+     ═══════════════════════════════════ */
+
+  .error-terminal {
+    margin: 2rem auto;
+    max-width: 420px;
+    border-radius: 14px;
+    border: 1px solid rgba(140, 180, 255, 0.12);
+    background: rgba(6, 6, 12, 0.88);
+    backdrop-filter: blur(16px);
+    overflow: hidden;
+    box-shadow:
+      0 24px 80px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(100, 140, 220, 0.06) inset;
+    text-align: left;
+  }
+
+  .terminal-chrome {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.7rem 0.9rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    background: rgba(10, 10, 18, 0.6);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 0.38rem;
+  }
+
+  .dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+  }
+
+  .dot-red { background: rgba(255, 95, 87, 0.85); }
+  .dot-yellow { background: rgba(255, 189, 46, 0.85); }
+  .dot-green { background: rgba(39, 201, 63, 0.85); }
+
+  .terminal-title {
+    flex: 1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    color: rgba(180, 190, 220, 0.5);
+    text-align: center;
+  }
+
+  .terminal-body {
+    padding: 0.8rem 0.9rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    line-height: 1.65;
+    letter-spacing: 0.02em;
+  }
+
+  .term-line {
+    white-space: pre;
+    min-height: 1.1em;
+  }
+
+  .term-cmd {
+    color: rgba(220, 235, 255, 0.95);
+    font-weight: 600;
+  }
+
+  .term-out {
+    color: rgba(160, 180, 220, 0.78);
+  }
+
+  .term-success {
+    color: rgba(80, 220, 140, 0.92);
+  }
+
+  .term-dim {
+    color: rgba(130, 145, 180, 0.5);
+  }
+
+  .term-blank {
+    height: 0.5em;
+    min-height: 0.5em;
+  }
+
+  .term-cursor {
+    display: inline-block;
+    width: 0.52em;
+    height: 1.1em;
+    background: rgba(180, 210, 255, 0.8);
+    vertical-align: text-bottom;
+    animation: cursorBlink 1s steps(2) infinite;
+  }
+
+  /* ═══════════════════════════════════
+     ACTIONS
+     ═══════════════════════════════════ */
+
+  .error-actions {
+    display: flex;
+    gap: 0.74rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .button {
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.72rem 1.1rem;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.11em;
+    font-size: 0.67rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    transition: transform 300ms ease, border-color 300ms ease, background 300ms ease, box-shadow 300ms ease;
+  }
+
+  .button-solid {
+    color: #040404;
+    background: #f2f3ef;
+  }
+
+  .button-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 28px rgba(255, 255, 255, 0.12);
+  }
+
+  .button-ghost {
+    color: rgba(200, 210, 230, 0.9);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .button-ghost:hover {
+    transform: translateY(-2px);
+    border-color: rgba(160, 200, 255, 0.4);
+    background: rgba(140, 180, 255, 0.06);
+    box-shadow: 0 4px 20px rgba(120, 160, 240, 0.08);
+  }
+
+  /* ═══════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════ */
+
+  .error-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.2rem;
+    text-align: center;
+    z-index: 3;
+  }
+
+  .error-footer p {
+    margin: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(160, 170, 200, 0.35);
+  }
+
+  /* ═══════════════════════════════════
+     KEYFRAMES
+     ═══════════════════════════════════ */
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes nebulaFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(20px, -15px) scale(1.04); }
+    66% { transform: translate(-15px, 10px) scale(0.97); }
+  }
+
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes grainShift {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-2px, 3px); }
+    50% { transform: translate(3px, -1px); }
+    75% { transform: translate(-1px, -2px); }
+    100% { transform: translate(2px, 1px); }
+  }
+
+  /* ═══════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════ */
+
+  @media (max-width: 560px) {
+    .error-terminal {
+      margin: 1.5rem auto;
+    }
+
+    .terminal-body {
+      font-size: 0.55rem;
+    }
+
+    .error-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .button {
+      text-align: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nebula,
+    .film-grain,
+    .term-cursor,
+    .error-content {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    .film-grain {
+      opacity: 0 !important;
+    }
+  }
+</style>
